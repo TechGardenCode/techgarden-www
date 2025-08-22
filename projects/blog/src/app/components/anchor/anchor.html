@@ -1,0 +1,36 @@
+<div class="h-full">
+  <section class="border-l border-stone-400 pl-3 mb-16">
+    <h2>Recently Updated</h2>
+    <ul>
+      <li class="truncate"><a>Post Title Long Long Long</a></li>
+      <li class="truncate"><a>Post Title</a></li>
+      <li class="truncate"><a>Post Title</a></li>
+      <li class="truncate"><a>Post Title</a></li>
+      <li class="truncate"><a>Post Title</a></li>
+    </ul>
+  </section>
+  <section class="border-l border-stone-400 pl-3 mb-16">
+    <h2>Trending Posts</h2>
+    <ul>
+      <li><a>Post Title</a></li>
+      <li><a>Post Title</a></li>
+      <li><a>Post Title</a></li>
+      <li><a>Post Title</a></li>
+      <li><a>Post Title</a></li>
+    </ul>
+  </section>
+  @if (sections().length) {
+  <section class="border-l border-stone-400 pl-3 sticky top-16">
+    <h2>Contents</h2>
+    <ul>
+      @for (section of sections(); track section.title) {
+      <li>
+        <a routerLink="/" [fragment]="parseFragment(section.title)">
+          {{ section.title }}
+        </a>
+      </li>
+      }
+    </ul>
+  </section>
+  }
+</div>

@@ -1,0 +1,69 @@
+<div class="flex flex-col container mx-auto px-3 relative">
+  <app-header [breadcrumbItems]="breadcrumbItems" />
+  <div class="flex gap-3">
+    <main class="grow mx-4">
+      <h1>{{ post.title }}</h1>
+      <header>
+        <div>Posted {{ "date" }}</div>
+        <div class="my-4">
+          <a href="#">
+            <img
+              src="https://placehold.co/800x400"
+              alt="Post Image"
+              class="w-full h-auto rounded aspect-video object-cover"
+            />
+          </a>
+        </div>
+        <div class="flex justify-between">
+          <div>
+            By <a href="#">{{ "author" }}</a>
+          </div>
+        </div>
+      </header>
+      <div class="flex flex-col gap-5">
+        @for (section of post.sections; track section) {
+        <section>
+          <h2
+            [id]="parseFragment(section.title)"
+            class="group w-fit text-2xl my-5"
+          >
+            <span class="mr-2">{{ section.title }}</span>
+            <a
+              routerLink=""
+              [fragment]="parseFragment(section.title)"
+              class="invisible group-hover:visible"
+              >#</a
+            >
+          </h2>
+          <p>{{ section.content }}</p>
+        </section>
+        }
+      </div>
+      <div class="mt-24 pb-2 flex flex-col gap-3 border-b border-stone-400">
+        @if (post.categories && post.categories.length) {
+        <div class="flex gap-2">
+          <div>Categories:</div>
+          @for (category of post.categories; track category) {
+          <a routerLink="/category/{{ category }}">{{ category }}</a>
+          }
+        </div>
+        } @if (post.tags && post.tags.length) {
+        <div class="flex gap-2">
+          <div>Tags:</div>
+          @for (tags of post.tags; track tags) {
+          <a routerLink="/tags/{{ tags }}">{{ tags }}</a>
+          }
+        </div>
+        }
+        <div class="mt-12 flex justify-between">
+          <div>{{ "License" }}</div>
+          <div>{{ "Share" }}</div>
+        </div>
+      </div>
+      <app-footer />
+    </main>
+    <aside class="hidden lg:block w-48 shrink-0 relative mt-16">
+      <app-anchor [sections]="post.sections" />
+    </aside>
+  </div>
+</div>
