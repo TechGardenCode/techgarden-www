@@ -12,9 +12,9 @@
 </h3>
 } @case ('code') {
 <div
-  class="overflow-auto px-4 py-2 border border-border bg-card text-card-foreground rounded-lg"
+  class="overflow-auto border border-border bg-card text-card-foreground rounded-lg"
 >
-  <div class="flex justify-between items-center">
+  <div class="flex px-4 pt-2 justify-between items-center">
     <div
       class="before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full before:bg-red-500 before:shadow-[1.25rem_0_0_var(--color-yellow-500),2.5rem_0_0_var(--color-green-500)] opacity-25"
     ></div>
@@ -34,18 +34,20 @@
       copy
     </button>
   </div>
-  <table>
-    <tbody>
-      <tr>
-        <td class="select-none pr-4 text-right text-muted-foreground">
-          <pre>{{ calcLineNos(section()?.content) }}</pre>
-        </td>
-        <td>
-          <pre><code>{{ section()?.content }}</code></pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="overflow-auto px-4 pb-2">
+    <table>
+      <tbody>
+        <tr>
+          <td class="select-none pr-4 text-right text-muted-foreground">
+            <pre>{{ calcLineNos(section()?.content) }}</pre>
+          </td>
+          <td>
+            <pre><code>{{ section()?.content }}</code></pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 } @case ('li') {
 <ul class="list-disc list-inside">
