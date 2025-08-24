@@ -1,6 +1,6 @@
 <nav>
   <ol
-    class="flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"
+    class="flex flex-nowrap items-center gap-1.5 text-sm break-words sm:gap-2.5"
   >
     @for(breadcrumb of breadcrumbItems(); track breadcrumb) { @if(!$first) {
     <li>/</li>
@@ -11,7 +11,7 @@
       </a>
     </li>
     } @if ($last) {
-    <li>
+    <li class="truncate">
       {{ breadcrumb.label }}
     </li>
     } }

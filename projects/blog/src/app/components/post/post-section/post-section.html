@@ -1,0 +1,58 @@
+@if (section()) { @switch (section()?.tag) { @case ('h1') {
+<h1 class="text-3xl mt-10 mb-8" id="{{ section()?.meta?.id }}">
+  {{ section()?.content }}
+</h1>
+} @case ('h2') {
+<h2 class="text-2xl mt-8 mb-6" id="{{ section()?.meta?.id }}">
+  {{ section()?.content }}
+</h2>
+} @case ('h3') {
+<h3 class="text-xl mt-6 mb-4" id="{{ section()?.meta?.id }}">
+  {{ section()?.content }}
+</h3>
+} @case ('code') {
+<div
+  class="overflow-auto px-4 py-2 border border-border bg-card text-card-foreground rounded-lg"
+>
+  <div class="flex justify-between items-center">
+    <div
+      class="before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full before:bg-red-500 before:shadow-[1.25rem_0_0_var(--color-yellow-500),2.5rem_0_0_var(--color-green-500)] opacity-25"
+    ></div>
+    <span
+      class="flex items-center gap-1 font-mono text-sm text-muted-foreground"
+    >
+      <ng-icon seedIcon name="lucideCodeXml" size="sm"></ng-icon>
+      <span>{{ section()?.meta?.language || "code" }}</span>
+    </span>
+    <button
+      class="cursor-pointer"
+      seedButton
+      variant="ghost"
+      (click)="copyContent()"
+      size="sm"
+    >
+      copy
+    </button>
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td class="select-none pr-4 text-right text-muted-foreground">
+          <pre>{{ calcLineNos(section()?.content) }}</pre>
+        </td>
+        <td>
+          <pre><code>{{ section()?.content }}</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+} @case ('li') {
+<ul class="list-disc list-inside">
+  @for (item of section()?.content; track $index) {
+  <li>{{ item }}</li>
+  }
+</ul>
+} @default {
+<p>{{ section()?.content }}</p>
+} } }

@@ -1,7 +1,7 @@
 <div class="h-full">
-  <section class="border-l border-stone-400 pl-3 mb-16">
+  <section class="border-l border-border pl-3 mb-16">
     <h2>Recently Updated</h2>
-    <ul>
+    <ul class="text-sm">
       <li class="truncate"><a>Post Title Long Long Long</a></li>
       <li class="truncate"><a>Post Title</a></li>
       <li class="truncate"><a>Post Title</a></li>
@@ -9,25 +9,36 @@
       <li class="truncate"><a>Post Title</a></li>
     </ul>
   </section>
-  <section class="border-l border-stone-400 pl-3 mb-16">
+  <!-- <section class="border-l border-border pl-3 mb-16">
     <h2>Trending Posts</h2>
-    <ul>
+    <ul class="text-sm">
       <li><a>Post Title</a></li>
       <li><a>Post Title</a></li>
       <li><a>Post Title</a></li>
       <li><a>Post Title</a></li>
       <li><a>Post Title</a></li>
     </ul>
-  </section>
-  @if (sections().length) {
-  <section class="border-l border-stone-400 pl-3 sticky top-16">
-    <h2>Contents</h2>
-    <ul>
-      @for (section of sections(); track section.title) {
-      <li>
-        <a routerLink="/" [fragment]="parseFragment(section.title)">
-          {{ section.title }}
+  </section> -->
+  @for (section of sections(); track $index) {
+  <section class="sticky top-16">
+    <h2 class="border-l border-border pl-3">Contents</h2>
+    <ul class="text-sm">
+      @for (content of parsedSections(); track $index) {
+      <li class="border-l border-border pl-3">
+        <a class="line-clamp-1" routerLink="." [fragment]="content.fragment">
+          {{ content.title }}
         </a>
+        @if (content.children && content.children.length) {
+        <ul class="pl-3">
+          @for (child of content.children; track $index) {
+          <li>
+            <a class="line-clamp-1" routerLink="." [fragment]="child.fragment">
+              {{ child.title }}
+            </a>
+          </li>
+          }
+        </ul>
+        }
       </li>
       }
     </ul>

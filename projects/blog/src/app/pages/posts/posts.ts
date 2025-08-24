@@ -1,49 +1,64 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  OnInit,
+  signal,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Header } from '../../components/header/header';
 import { Footer } from '../../components/footer/footer';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Anchor } from '../../components/anchor/anchor';
+import { PostsService } from '../../services/posts.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { PostGroup } from '../../components/post/post-group/post-group';
+import { Post } from '../../types/post.type';
+import { SeedH1 } from '@seed/typography/seed-h1';
 
 @Component({
   selector: 'app-posts',
-  imports: [Header, Footer, RouterModule, Anchor],
+  imports: [Header, Footer, RouterModule, Anchor, PostGroup, SeedH1],
   templateUrl: './posts.html',
   styleUrl: './posts.css',
+  encapsulation: ViewEncapsulation.None,
 })
-export class Posts {
-  post = {
-    id: '',
-    title: 'Lorem Ipsum',
-    categories: ['lipsum'],
-    tags: ['lorem', 'ipsum', 'dolor', 'sit', 'amet'],
-    sections: [
-      {
-        title: 'Section 1',
-        content:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisi lorem, imperdiet non ipsum sed, suscipit varius sapien. Duis efficitur mi nec fermentum vulputate. Duis eget nisl mi. Nunc in libero vel purus pretium faucibus at quis enim. Aliquam id sodales sapien. Nulla facilisi. Cras in tincidunt dui, scelerisque lacinia tellus. Nulla sapien augue, commodo eu interdum vitae, efficitur et elit. Proin malesuada lobortis dui sed ullamcorper. Aenean purus metus, dictum at leo et, iaculis accumsan ligula. Nullam hendrerit dignissim tortor, a congue lectus molestie sit amet. Sed et aliquet dolor. Aenean dapibus nulla non dolor viverra porta.',
-      },
-      {
-        title: 'Section 2',
-        content:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisi lorem, imperdiet non ipsum sed, suscipit varius sapien. Duis efficitur mi nec fermentum vulputate. Duis eget nisl mi. Nunc in libero vel purus pretium faucibus at quis enim. Aliquam id sodales sapien. Nulla facilisi. Cras in tincidunt dui, scelerisque lacinia tellus. Nulla sapien augue, commodo eu interdum vitae, efficitur et elit. Proin malesuada lobortis dui sed ullamcorper. Aenean purus metus, dictum at leo et, iaculis accumsan ligula. Nullam hendrerit dignissim tortor, a congue lectus molestie sit amet. Sed et aliquet dolor. Aenean dapibus nulla non dolor viverra porta.',
-      },
-      {
-        title: 'Section 3',
-        content:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisi lorem, imperdiet non ipsum sed, suscipit varius sapien. Duis efficitur mi nec fermentum vulputate. Duis eget nisl mi. Nunc in libero vel purus pretium faucibus at quis enim. Aliquam id sodales sapien. Nulla facilisi. Cras in tincidunt dui, scelerisque lacinia tellus. Nulla sapien augue, commodo eu interdum vitae, efficitur et elit. Proin malesuada lobortis dui sed ullamcorper. Aenean purus metus, dictum at leo et, iaculis accumsan ligula. Nullam hendrerit dignissim tortor, a congue lectus molestie sit amet. Sed et aliquet dolor. Aenean dapibus nulla non dolor viverra porta.',
-      },
-      {
-        title: 'Section 4',
-        content:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisi lorem, imperdiet non ipsum sed, suscipit varius sapien. Duis efficitur mi nec fermentum vulputate. Duis eget nisl mi. Nunc in libero vel purus pretium faucibus at quis enim. Aliquam id sodales sapien. Nulla facilisi. Cras in tincidunt dui, scelerisque lacinia tellus. Nulla sapien augue, commodo eu interdum vitae, efficitur et elit. Proin malesuada lobortis dui sed ullamcorper. Aenean purus metus, dictum at leo et, iaculis accumsan ligula. Nullam hendrerit dignissim tortor, a congue lectus molestie sit amet. Sed et aliquet dolor. Aenean dapibus nulla non dolor viverra porta.',
-      },
-    ],
-  };
+export class Posts implements OnInit {
+  postsService = inject(PostsService);
+  sanitizer = inject(DomSanitizer);
+  activatedRoute = inject(ActivatedRoute);
+  postContents = signal<{ fragment: string; title: string, tag: string }[]>([]);
 
-  breadcrumbItems = [
-    { url: '/', label: 'Home' },
-    { url: '/posts', label: this.post.title },
-  ];
+  post = signal<Post | undefined>(undefined);
+
+  breadcrumbItems = [{ url: '/', label: 'Home' }];
+
+  mdPost = signal<string>('');
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      const postId = params['postId'];
+      this.getPostById(postId);
+    });
+  }
+
+  getPostById(postId: string) {
+    this.postsService.getPostById(postId).subscribe((post) => {
+      if (!post) {
+        return;
+      }
+      this.post.set(post);
+      this.getPostMdByFileName(post.fileName);
+      this.breadcrumbItems.push({ url: `/posts/${postId}`, label: post.title });
+    });
+  }
+
+  getPostMdByFileName(fileName: string) {
+    this.postsService.getPostMdByFileName(fileName).subscribe((content) => {
+      this.mdPost.set(content);
+    });
+  }
 
   parseFragment(fragment: string) {
     return fragment.trim().toLowerCase().split(' ').join('-');

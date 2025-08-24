@@ -12,9 +12,8 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "paths": {
-      "seeds": [
-        "./dist/seeds"
-      ]
+      "@seed/*": ["./projects/seeds/src/lib/*"],
+      "seeds": ["./dist/seeds"]
     },
     "importHelpers": true,
     "target": "ES2022",

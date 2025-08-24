@@ -1,6 +1,32 @@
-<aside class="h-full flex flex-col fixed z-10 ease-linear transition-transform transform -translate-x-64 md:translate-x-0">
+<aside
+  class="fixed overflow-y-auto w-64 top-0 left-0 bottom-0 z-50 transition-transform duration-300 -translate-x-64 md:translate-x-0 data-[mobile-open=true]:translate-x-0"
+  [attr.data-mobile-open]="mobileService.isNavOpen()"
+>
   <app-nav />
 </aside>
-<div class="md:ml-64">
+<div
+  class="md:ml-64 transition-transform duration-300 transform data-[mobile-open=true]:translate-x-64"
+  [attr.data-mobile-open]="mobileService.isNavOpen()"
+>
   <router-outlet />
+</div>
+<div
+  class="h-dvh w-dvw fixed inset-0 z-10 hidden data-[mobile-open=true]:block"
+  (click)="mobileService.closeNav()"
+  [attr.data-mobile-open]="mobileService.isNavOpen()"
+></div>
+<div
+  class="fixed w-full lg:w-[calc(100%-16rem)] lg:left-64 bottom-24 data-[scroll-to-top=true]:block hidden z-50"
+  [attr.data-scroll-to-top]="showScrollToTop()"
+>
+  <div class="lg:w-7xl mx-auto relative">
+    <button
+      seedButton
+      class="absolute right-4 lg:right-0 cursor-pointer rounded-full"
+      size="icon-lg"
+      (click)="scrollToTop()"
+    >
+      <ng-icon size="24" name="lucideChevronUp"></ng-icon>
+    </button>
+  </div>
 </div>

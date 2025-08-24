@@ -1,7 +1,7 @@
-import { Component, effect, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, computed, effect, inject, linkedSignal, OnInit, ViewEncapsulation } from '@angular/core';
 import { Header } from '../../components/header/header';
 import { Footer } from '../../components/footer/footer';
-import { Posts } from '../../services/posts';
+import { PostsService } from '../../services/posts.service';
 import { RouterLink } from '@angular/router';
 import { Anchor } from '../../components/anchor/anchor';
 
@@ -13,17 +13,14 @@ import { Anchor } from '../../components/anchor/anchor';
   encapsulation: ViewEncapsulation.None,
 })
 export class Home implements OnInit {
-  postsService = inject(Posts);
+  postsService = inject(PostsService);
+
   posts = this.postsService.markdownPosts;
+  postsApiState = computed(() => this.postsService.postsApiState());
   breadcrumbItems = [{ url: '/', label: 'Home' }];
 
-  constructor() {
-    effect(() => {
-      console.log(this.posts());
-    });
-  }
-
   ngOnInit() {
+    this.postsService.getPosts();
     this.postsService.fetchMarkdownPosts();
   }
 }
