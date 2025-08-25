@@ -17,7 +17,7 @@ import { Footer } from './components/shared/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.css',
   host: {
-    class: 'flex flex-col min-h-screen',
+    class: 'flex flex-col min-h-svh',
   },
 })
 export class App {
