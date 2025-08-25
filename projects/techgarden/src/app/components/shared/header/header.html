@@ -1,0 +1,20 @@
+<header class="h-16 flex items-center gap-4 justify-between overflow-hidden max-w-7xl mx-auto">
+  <app-breadcrumb
+    class="hidden md:block overflow-hidden"
+    [breadcrumbItems]="breadcrumbItems()"
+  />
+  <button
+    seedButton
+    size="icon"
+    variant="ghost"
+    class="md:hidden"
+    (click)="mobileService.toggleNav()"
+  >
+    <ng-icon seedIcon name="lucideMenu" />
+  </button>
+  <search
+    class="border border-border rounded-md flex item-center transition-[width] w-48 lg:w-64 focus-within:w-64 focus-within:ring-[3px] focus-within:ring-ring/50 focus-within:border-ring shadow-xs bg-input/30"
+  >
+    <input class="outline-none py-1 px-2" placeholder="Search" />
+  </search>
+</header>

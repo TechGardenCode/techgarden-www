@@ -8,3 +8,5 @@ export * from './lib/components/icon/seed-icon';
 export * from './lib/typography/seed-h1';
 export * from './lib/typography/seed-h2';
 export * from './lib/typography/seed-h3';
+
+export * from './lib/models/public-api';

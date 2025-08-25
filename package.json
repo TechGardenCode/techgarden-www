@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --project techgarden",
     "build": "ng build",
-    "build:ci": "ng build --project blog --configuration production",
+    "build:ci": "ng build --project techgarden --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
