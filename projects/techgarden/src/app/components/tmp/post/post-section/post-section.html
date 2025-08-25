@@ -1,13 +1,13 @@
 @if (section()) { @switch (section()?.tag) { @case ('h1') {
-<h1 class="text-3xl mt-10 mb-8" id="{{ section()?.meta?.id }}">
+<h1 seedH1 class="mt-10 mb-8" id="{{ section()?.meta?.id }}">
   {{ section()?.content }}
 </h1>
 } @case ('h2') {
-<h2 class="text-2xl mt-8 mb-6" id="{{ section()?.meta?.id }}">
+<h2 seedH2 class="mt-8 mb-6" id="{{ section()?.meta?.id }}">
   {{ section()?.content }}
 </h2>
 } @case ('h3') {
-<h3 class="text-xl mt-6 mb-4" id="{{ section()?.meta?.id }}">
+<h3 seedH3 class="text-xl mt-6 mb-4" id="{{ section()?.meta?.id }}">
   {{ section()?.content }}
 </h3>
 } @case ('code') {

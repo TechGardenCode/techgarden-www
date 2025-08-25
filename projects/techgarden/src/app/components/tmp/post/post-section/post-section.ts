@@ -4,10 +4,13 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { SeedIcon } from '@seed/components/icon/seed-icon';
 import { lucideCodeXml } from '@ng-icons/lucide';
 import { PostSectionType } from '@seed/models/post.model';
+import { SeedH1 } from "@seed/typography/seed-h1";
+import { SeedH2 } from '@seed/typography/seed-h2';
+import { SeedH3 } from '@seed/typography/seed-h3';
 
 @Component({
   selector: 'app-post-section',
-  imports: [SeedButton, NgIcon, SeedIcon],
+  imports: [SeedButton, NgIcon, SeedIcon, SeedH1, SeedH2, SeedH3],
   providers: [provideIcons({ lucideCodeXml })],
   templateUrl: './post-section.html',
   styleUrl: './post-section.css',

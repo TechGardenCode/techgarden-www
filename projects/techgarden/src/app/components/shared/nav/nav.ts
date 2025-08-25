@@ -15,10 +15,11 @@ import {
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../../services/theme.service';
 import { MobileService } from '../../../services/mobile.service';
+import { SeedH1 } from "@seed/typography/seed-h1";
 
 @Component({
   selector: 'app-nav',
-  imports: [RouterModule, SeedButton, SeedIcon, NgIcon],
+  imports: [RouterModule, SeedButton, SeedIcon, NgIcon, SeedH1],
   providers: [
     provideIcons({
       lucideMoon,
