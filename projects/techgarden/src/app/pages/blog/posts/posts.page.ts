@@ -12,7 +12,7 @@ import { HeaderService } from '../../../services/header.service';
 
 @Component({
   selector: 'app-posts.page',
-  imports: [Footer, RouterModule, Anchor, PostGroup, SeedH1],
+  imports: [RouterModule, Anchor, PostGroup, SeedH1],
   templateUrl: './posts.page.html',
   styleUrl: './posts.page.css',
 })
@@ -61,6 +61,7 @@ export class PostsPage implements OnInit {
         label: post.title,
         url: `/posts/${postId}`,
       });
+      console.log(post);
     });
   }
 

@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        } } @else { @for(post of postsApiState().data?.content; track post.id) {
+        } } @else { @for(post of postsApiState().data?.content; track $index) {
         <a
           routerLink="/blog/posts/{{ post.id }}"
           class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"

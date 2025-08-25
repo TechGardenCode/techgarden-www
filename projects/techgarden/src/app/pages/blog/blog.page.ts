@@ -7,7 +7,7 @@ import { Anchor } from "../../components/tmp/anchor/anchor";
 
 @Component({
   selector: 'app-blog.page',
-  imports: [RouterModule, Footer, Anchor],
+  imports: [RouterModule, Anchor],
   templateUrl: './blog.page.html',
   styleUrl: './blog.page.css',
 })

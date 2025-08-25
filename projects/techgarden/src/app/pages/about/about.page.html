@@ -1,3 +1,38 @@
-<div class="flex flex-col container max-w-7xl mx-auto p-0 relative">
-  <p>About Page</p>
+<div class="flex flex-col gap-4 container max-w-7xl mx-auto p-0 relative">
+  <h1 seedH1 class="mb-8">Hi I'm Kian!</h1>
+  <p seedH2 class="mb-4">
+    {{ ageInYears() }} year old tech nerd living in Washington, D.C.
+  </p>
+  <p>
+    Full stack principal architect for a Fortune 500 company<br />
+    Strong advocate for self-hosted infrastructure with cloud level redundancy
+    and scale
+  </p>
+  <h2 seedH2>What am I currently working on?</h2>
+  <ul>
+    <li>
+      <input disabled type="checkbox" checked />
+      Setting up a fully
+      <a
+        href="https://github.com/techgardencode/homelab"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+        >GitOps</a
+      >
+      driven active/active HA Kubernetes cluster(s)
+    </li>
+    <li>
+      <input disabled type="checkbox" checked />
+      Automate hardware bootstrap with Terraform and Ansible
+    </li>
+    <li>
+      <input disabled type="checkbox" /> Create a blog to document my homelab
+      journey
+    </li>
+    <li>
+      <input disabled type="checkbox" /> Add e2e monitoring and alerting using
+      the Grafana stack
+    </li>
+  </ul>
 </div>

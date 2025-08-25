@@ -1,14 +1,21 @@
 import { Component, inject, input, ViewEncapsulation } from '@angular/core';
 import { SeedButton } from '@seed/components/button/seed-button';
 import { SeedIcon } from '@seed/components/icon/seed-icon';
+import { SeedInput } from '@seed/components/input/seed-input';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideMenu } from '@ng-icons/lucide';
+import { lucideMenu, lucideSearch } from '@ng-icons/lucide';
 import { Breadcrumb } from '../../tmp/breadcrumb/breadcrumb';
 import { MobileService } from '../../../services/mobile.service';
 
 @Component({
   selector: 'app-header',
-  imports: [Breadcrumb, SeedButton, SeedIcon, NgIcon],
+  imports: [
+    Breadcrumb,
+    SeedButton,
+    SeedIcon,
+    NgIcon,
+    SeedInput,
+  ],
   providers: [provideIcons({ lucideMenu })],
   templateUrl: './header.html',
   styleUrl: './header.css',
