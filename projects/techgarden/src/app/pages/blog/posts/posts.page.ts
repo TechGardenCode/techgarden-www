@@ -61,7 +61,6 @@ export class PostsPage implements OnInit {
         label: post.title,
         url: `/posts/${postId}`,
       });
-      console.log(post);
     });
   }
 

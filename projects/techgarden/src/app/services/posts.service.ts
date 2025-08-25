@@ -28,7 +28,7 @@ export class PostsService {
       description: 'This is the first post',
       date: '2023-01-01',
       fileName: '2023-01-01-first-post.md',
-      imageUrl: '/img/immich-self-hosted-hero.webp',
+      imageUrl: '/img/hi-res/immich-self-hosted-hero.webp',
     },
     {
       id: '2',
@@ -36,7 +36,7 @@ export class PostsService {
       description: 'This is the second post',
       date: '2023-01-02',
       fileName: '2023-01-02-second-post.md',
-      imageUrl: '/img/truenas-docker-pro-hero.webp',
+      imageUrl: '/img/hi-res/truenas-docker-pro-hero.webp',
     },
     {
       id: '3',
@@ -44,7 +44,7 @@ export class PostsService {
       description: 'This is the third post',
       date: '2023-01-03',
       fileName: '2023-01-03-third-post.md',
-      imageUrl: '/img/n8n-self-hosted-hero.webp',
+      imageUrl: '/img/hi-res/n8n-self-hosted-hero.webp',
     },
   ]);
 
