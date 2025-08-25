@@ -12,7 +12,7 @@ import { HeaderService } from '../../../services/header.service';
 
 @Component({
   selector: 'app-posts.page',
-  imports: [Header, Footer, RouterModule, Anchor, PostGroup, SeedH1],
+  imports: [Footer, RouterModule, Anchor, PostGroup, SeedH1],
   templateUrl: './posts.page.html',
   styleUrl: './posts.page.css',
 })

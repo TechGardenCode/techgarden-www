@@ -7,22 +7,26 @@ import { lucideChevronUp } from '@ng-icons/lucide';
 import { Header } from './components/shared/header/header';
 import { HeaderService } from './services/header.service';
 import { ThemeService } from './services/theme.service';
-import { SeedButton } from "@seed/components/button/seed-button";
+import { SeedButton } from '@seed/components/button/seed-button';
+import { Footer } from './components/shared/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Nav, NgIcon, Header, SeedButton],
+  imports: [RouterOutlet, Nav, NgIcon, Header, SeedButton, Footer],
   providers: [provideIcons({ lucideChevronUp })],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  host: {
+    class: 'flex flex-col min-h-screen',
+  },
 })
-export class App  {
+export class App {
   protected readonly title = signal('techgarden');
   protected readonly mobileService = inject(MobileService);
   protected readonly headerService = inject(HeaderService);
   protected readonly themeService = inject(ThemeService);
 
-  protected readonly showScrollToTop = signal(false);
+  protected readonly pageScrolledY = signal(false);
 
   constructor() {
     this.themeService.initLightDarkMode();
@@ -34,20 +38,22 @@ export class App  {
       {
         label: 'About',
         url: '/about',
-      }
+      },
     ]);
   }
   _scrollTimeout!: number;
 
-  @HostListener('window:scroll', [])
+  @HostListener('window:keydown.escape')
+  onEscapeKeyDown(): void {
+    this.mobileService.closeNav();
+  }
+
+  @HostListener('window:scroll')
   onScroll(): void {
-    clearTimeout(this._scrollTimeout);
-    this._scrollTimeout = setTimeout(() => {
-      const shouldShow = window.scrollY > 0;
-      if (this.showScrollToTop() !== shouldShow) {
-        this.showScrollToTop.set(shouldShow);
-      }
-    }, 100);
+    const shouldShow = window.scrollY > 0;
+    if (this.pageScrolledY() !== shouldShow) {
+      this.pageScrolledY.set(shouldShow);
+    }
   }
 
   scrollToTop(): void {

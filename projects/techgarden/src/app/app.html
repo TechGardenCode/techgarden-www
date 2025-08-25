@@ -5,11 +5,12 @@
   <app-nav />
 </aside>
 <div
-  class="md:ml-64 transition-transform duration-300 transform data-[mobile-open=true]:translate-x-64 px-4"
+  class="md:ml-64 grow flex flex-col transition-transform duration-300 transform data-[mobile-open=true]:translate-x-64 px-4"
   [attr.data-mobile-open]="mobileService.isNavOpen()"
 >
   <app-header [breadcrumbItems]="headerService.breadcrumbs()" />
   <router-outlet />
+  <app-footer class="mt-auto" />
 </div>
 <div
   class="h-dvh w-dvw fixed inset-0 z-10 hidden data-[mobile-open=true]:block"
@@ -17,8 +18,8 @@
   [attr.data-mobile-open]="mobileService.isNavOpen()"
 ></div>
 <div
-  class="fixed w-full lg:w-[calc(100%-16rem)] lg:left-64 bottom-16 data-[scroll-to-top=true]:block hidden z-50"
-  [attr.data-scroll-to-top]="showScrollToTop()"
+  class="fixed w-full lg:w-[calc(100%-16rem)] lg:left-64 bottom-16 data-[scrolled-y=true]:block hidden z-50"
+  [attr.data-scrolled-y]="pageScrolledY()"
 >
   <div class="lg:max-w-7xl mx-auto relative">
     <button

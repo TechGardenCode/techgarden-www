@@ -14,6 +14,10 @@ export class HeaderService {
 
   readonly breadcrumbs = signal<BreadcrumbDto[]>(this.DEFAULT_BREADCRUMBS);
 
+  defaultBreadcrumbs() {
+    this.breadcrumbs.set(this.DEFAULT_BREADCRUMBS);
+  }
+
   setBreadcrumbs(
     breadcrumbs: BreadcrumbDto[],
     config = { withDefaults: false }

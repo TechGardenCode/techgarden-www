@@ -11,10 +11,14 @@ export class MobileService {
   }
 
   openNav() {
-    this.isNavOpen.set(true);
+    if (!this.isNavOpen()) {
+      this.isNavOpen.set(true);
+    }
   }
 
   closeNav() {
-    this.isNavOpen.set(false);
+    if (this.isNavOpen()) {
+      this.isNavOpen.set(false);
+    }
   }
 }
