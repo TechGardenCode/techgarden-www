@@ -72,43 +72,47 @@ export class App {
   private swipeCoord = signal<[number, number] | null>(null);
   private swipeTime = signal<number | null>(null);
 
-  @HostListener('window:touchstart', ['$event'])
-  onTouchStart(event: TouchEvent): void {
-    const coord: [number, number] = [
-      event.changedTouches[0].clientX,
-      event.changedTouches[0].clientY,
-    ];
-    const time = new Date().getTime();
-    this.swipeCoord.set(coord);
-    this.swipeTime.set(time);
-  }
+  // @HostListener('window:touchstart', ['$event'])
+  // onTouchStart(event: TouchEvent): void {
+  //   const coord: [number, number] = [
+  //     event.changedTouches[0].clientX,
+  //     event.changedTouches[0].clientY,
+  //   ];
+  //   const time = new Date().getTime();
+  //   this.swipeCoord.set(coord);
+  //   this.swipeTime.set(time);
+  // }
 
-  @HostListener('window:touchend', ['$event'])
-  onTouchEnd(event: TouchEvent): void {
-    const coord: [number, number] = [
-      event.changedTouches[0].clientX,
-      event.changedTouches[0].clientY,
-    ];
-    const time = new Date().getTime();
-    const swipeCoord = this.swipeCoord();
-    if (!swipeCoord) return;
-    const swipeTime = this.swipeTime();
-    if (!swipeTime) return;
-    const duration = time - swipeTime;
-    const direction = [coord[0] - swipeCoord[0], coord[1] - swipeCoord[1]];
+  // @HostListener('window:touchend', ['$event'])
+  // onTouchEnd(event: TouchEvent): void {
+  //   const coord: [number, number] = [
+  //     event.changedTouches[0].clientX,
+  //     event.changedTouches[0].clientY,
+  //   ];
+  //   const time = new Date().getTime();
+  //   const swipeCoord = this.swipeCoord();
+  //   if (!swipeCoord) return;
+  //   const swipeTime = this.swipeTime();
+  //   if (!swipeTime) return;
+  //   const duration = time - swipeTime;
+  //   const direction = [coord[0] - swipeCoord[0], coord[1] - swipeCoord[1]];
 
-    if (
-      duration < 1000 &&
-      Math.abs(direction[0]) > 30 &&
-      Math.abs(direction[0]) > Math.abs(direction[1] * 3)
-    ) {
-      if (direction[0] < 0) {
-        this.mobileService.closeNav();
-      } else {
-        this.mobileService.openNav();
-      }
-    }
-  }
+  //   if (
+  //     duration < 1000 &&
+  //     Math.abs(direction[0]) > 30 &&
+  //     Math.abs(direction[0]) > Math.abs(direction[1] * 3)
+  //   ) {
+  //     if (direction[0] < 0) {
+  //       if (swipeCoord[0] > window.innerWidth / 2) {
+  //         this.mobileService.closeNav();
+  //       }
+  //     } else {
+  //       if (swipeCoord[0] < window.innerWidth / 2) {
+  //         this.mobileService.openNav();
+  //       }
+  //     }
+  //   }
+  // }
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
