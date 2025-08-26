@@ -103,13 +103,9 @@ export class App {
       Math.abs(direction[0]) > Math.abs(direction[1] * 3)
     ) {
       if (direction[0] < 0) {
-        if (swipeCoord[0] > window.innerWidth / 2) {
-          this.mobileService.closeNav();
-        }
+        this.mobileService.closeNav();
       } else {
-        if (swipeCoord[0] < window.innerWidth / 2) {
-          this.mobileService.openNav();
-        }
+        this.mobileService.openNav();
       }
     }
   }
