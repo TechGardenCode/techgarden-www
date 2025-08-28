@@ -18,12 +18,13 @@ export class PostsService {
     loading: false,
     error: undefined,
     firstLoad: true,
+    updatedAt: new Date(),
   });
 
   postFileNames = signal<string[]>(['2025-06-15-immich-self-hosted.md']);
   content = signal<Post[]>([
     {
-      id: '1',
+      id: '2e6c883a-06c1-489b-86af-7cbada47c4ae',
       title: 'Take Control of Your Photos - Self-Host Immich on Your Server',
       description: 'This is the first post',
       date: '2023-01-01',
@@ -31,7 +32,7 @@ export class PostsService {
       imageUrl: '/img/hi-res/immich-self-hosted-hero.webp',
     },
     {
-      id: '2',
+      id: '2e6c883a-06c1-489b-86af-7cbada47c4b0',
       title: 'How I Run Docker on TrueNAS Like a Pro',
       description: 'This is the second post',
       date: '2023-01-02',
@@ -39,7 +40,7 @@ export class PostsService {
       imageUrl: '/img/hi-res/truenas-docker-pro-hero.webp',
     },
     {
-      id: '3',
+      id: '2e6c883a-06c1-489b-86af-7cbada47c4b2',
       title: 'Self-Host Your Own Automation Platform with n8n + Docker',
       description: 'This is the third post',
       date: '2023-01-03',

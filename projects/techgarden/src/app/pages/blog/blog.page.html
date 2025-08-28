@@ -24,7 +24,7 @@
         </div>
         } } @else { @for(post of postsApiState().data?.content; track $index) {
         <a
-          routerLink="/blog/posts/{{ post.id }}"
+          routerLink="/blog/{{ post.id }}"
           class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"
         >
           <div class="shrink-0 md:w-1/2 md:max-w-80">
@@ -43,8 +43,8 @@
               >
                 {{ post.title }}
               </h2>
-              <p class="text-secondary-foreground">{{ post.description }}</p>
-              <div class="mt-2 text-secondary-foreground">{{ post.date }}</div>
+              <p class="text-secondary-foreground line-clamp-2">{{ post.description }}</p>
+              <div class="mt-2 text-secondary-foreground">{{ post.createdAt | date: 'mediumDate' }}</div>
             </div>
           </div>
         </a>

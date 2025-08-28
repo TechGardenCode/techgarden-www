@@ -3,4 +3,5 @@ export type ApiState<T> = {
   loading: boolean;
   error?: unknown;
   firstLoad: boolean;
+  updatedAt?: Date;
 };

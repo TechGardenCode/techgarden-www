@@ -59,7 +59,7 @@ export class PostsPage implements OnInit {
       this.getPostMdByFileName(post.fileName);
       this.headerService.addBreadcrumb({
         label: post.title,
-        url: `/posts/${postId}`,
+        url: `/${postId}`,
       });
     });
   }

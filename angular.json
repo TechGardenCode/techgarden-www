@@ -70,9 +70,7 @@
                 "input": "projects/techgarden/public"
               }
             ],
-            "styles": [
-              "projects/techgarden/src/styles.css"
-            ]
+            "styles": ["projects/techgarden/src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -114,7 +112,8 @@
               "buildTarget": "techgarden:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": { "proxyConfig": "projects/techgarden/src/proxy.conf.json" }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
@@ -129,9 +128,7 @@
                 "input": "projects/techgarden/public"
               }
             ],
-            "styles": [
-              "projects/techgarden/src/styles.css"
-            ]
+            "styles": ["projects/techgarden/src/styles.css"]
           }
         }
       }
