@@ -17,20 +17,13 @@ export class BlogService {
     firstLoad: true,
   });
 
-  getPostMetadata(
-    {
-      page,
-      size,
-    }: {
-      page: number;
-      size: number;
-    } = { page: 0, size: 10 }
-  ) {
-    // const now = new Date();
-    // const updatedAt = this.postMetadataApiState().updatedAt;
-    // if (updatedAt && now.getTime() - updatedAt.getTime() < 5 * 1000) {
-    //   return;
-    // }
+  getPostMetadata({
+    page = 0,
+    size = 10,
+  }: {
+    page?: number;
+    size?: number;
+  } = {}) {
     this.postMetadataApiState.update((state) => ({
       ...state,
       loading: true,
@@ -47,7 +40,13 @@ export class BlogService {
               loading: false,
               error: null,
               firstLoad: false,
-              data: response,
+              data: {
+                ...response,
+                number:
+                  response.number > response.totalPages
+                    ? response.totalPages - 1
+                    : response.number,
+              },
               updatedAt: new Date(),
             }));
           },
