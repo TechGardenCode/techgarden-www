@@ -6,24 +6,24 @@ import { Anchor } from '../../../components/tmp/anchor/anchor';
 import { SeedH1 } from '@seed/typography/seed-h1';
 import { PostGroup } from '../../../components/tmp/post/post-group/post-group';
 import { PostsService } from '../../../services/posts.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Post } from '@seed/models/post.model';
 import { HeaderService } from '../../../services/header.service';
+import { BlogService } from '../../../services/api/blog.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-posts.page',
-  imports: [RouterModule, Anchor, PostGroup, SeedH1],
+  imports: [RouterModule, Anchor, PostGroup, SeedH1, DatePipe],
   templateUrl: './posts.page.html',
   styleUrl: './posts.page.css',
 })
 export class PostsPage implements OnInit {
-  headerService = inject(HeaderService);
-  postsService = inject(PostsService);
-  sanitizer = inject(DomSanitizer);
-  activatedRoute = inject(ActivatedRoute);
+  protected readonly headerService = inject(HeaderService);
+  protected readonly blogService = inject(BlogService);
+  protected readonly postsService = inject(PostsService);
+  protected readonly activatedRoute = inject(ActivatedRoute);
   postContents = signal<{ fragment: string; title: string; tag: string }[]>([]);
 
-  post = signal<Post | undefined>(undefined);
+  post = signal<any>(undefined);
 
   breadcrumbItems = [{ url: '/', label: 'Home' }];
 
@@ -51,6 +51,16 @@ export class PostsPage implements OnInit {
   }
 
   getPostById(postId: string) {
+    this.blogService.getPostById(postId).subscribe({
+      next: (post: any) => {
+        this.post.set(post);
+        this.mdPost.set(post.body.content || '');
+        this.headerService.addBreadcrumb({
+          label: post.metadata.title,
+          url: `/${postId}`,
+        });
+      },
+    });
     this.postsService.getPostById(postId).subscribe((post) => {
       if (!post) {
         return;

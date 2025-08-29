@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Page } from '@seed/models/page.model';
+import { Page, Page2 } from '@seed/models/page.model';
 import { PostMetadata } from '../../models/post-metadata.model';
 import { tap } from 'rxjs';
 import { ApiState } from '@seed/models/api-state.model';
@@ -11,7 +11,7 @@ import { ApiState } from '@seed/models/api-state.model';
 export class BlogService {
   protected readonly http = inject(HttpClient);
 
-  postMetadataApiState = signal<ApiState<Page<PostMetadata>>>({
+  postMetadataApiState = signal<ApiState<Page2<PostMetadata>>>({
     loading: false,
     error: null,
     firstLoad: true,
@@ -26,17 +26,17 @@ export class BlogService {
       size: number;
     } = { page: 0, size: 10 }
   ) {
-    const now = new Date();
-    const updatedAt = this.postMetadataApiState().updatedAt;
-    if (updatedAt && now.getTime() - updatedAt.getTime() < 5 * 1000) {
-      return;
-    }
+    // const now = new Date();
+    // const updatedAt = this.postMetadataApiState().updatedAt;
+    // if (updatedAt && now.getTime() - updatedAt.getTime() < 5 * 1000) {
+    //   return;
+    // }
     this.postMetadataApiState.update((state) => ({
       ...state,
       loading: true,
     }));
     return this.http
-      .get<Page<PostMetadata>>(`/api/blog/posts/metadata`, {
+      .get<Page2<PostMetadata>>(`/api/blog/posts/metadata`, {
         params: { page, size },
       })
       .pipe(
@@ -62,5 +62,9 @@ export class BlogService {
         })
       )
       .subscribe();
+  }
+
+  getPostById(id: string) {
+    return this.http.get(`/api/blog/posts/${id}`);
   }
 }

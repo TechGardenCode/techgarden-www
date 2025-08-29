@@ -8,7 +8,7 @@
 <a href="#" class="text-2xl">
   <h1 seedH1>Tech Garden</h1>
 </a>
-<p>Principal Architect<br>Bring back on-prem!</p>
+<p>Principal Architect<br />Bring back on-prem!</p>
 <div class="w-full mt-12">
   <ul class="flex flex-col gap-2 -mx-4">
     <li>
@@ -47,6 +47,20 @@
         <span>Blog</span>
       </a>
     </li>
+    @if (!environment.production) {
+    <li>
+      <a
+        seedButton
+        variant="ghost"
+        routerLink="/test"
+        class="w-full gap-3 justify-start"
+        (click)="mobileService.closeNav()"
+      >
+        <ng-icon seedIcon name="lucideTestTube" />
+        <span>Test</span>
+      </a>
+    </li>
+    }
   </ul>
 </div>
 <div class="mt-auto flex w-full gap-2 items-center justify-center">

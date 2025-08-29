@@ -21,7 +21,6 @@ export class Anchor {
   }
 
   parseSections(sections: AnchorSection[]) {
-
     const parsedSections: AnchorSection[] = [];
     for (let i = 0; i < sections.length; i++) {
       if (sections[i].tag === 'h3') {

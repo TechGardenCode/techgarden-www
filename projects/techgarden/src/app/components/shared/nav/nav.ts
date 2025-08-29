@@ -10,12 +10,14 @@ import {
   lucideMoon,
   lucideNotebookPen,
   lucideSun,
+  lucideTestTube,
   lucideTwitter,
 } from '@ng-icons/lucide';
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../../services/theme.service';
 import { MobileService } from '../../../services/mobile.service';
-import { SeedH1 } from "@seed/typography/seed-h1";
+import { SeedH1 } from '@seed/typography/seed-h1';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -30,6 +32,7 @@ import { SeedH1 } from "@seed/typography/seed-h1";
       lucideGithub,
       lucideTwitter,
       lucideNotebookPen,
+      lucideTestTube,
     }),
   ],
   templateUrl: './nav.html',
@@ -41,6 +44,7 @@ import { SeedH1 } from "@seed/typography/seed-h1";
   },
 })
 export class Nav {
+  environment = environment;
   protected readonly themeService = inject(ThemeService);
   protected readonly mobileService = inject(MobileService);
 }
