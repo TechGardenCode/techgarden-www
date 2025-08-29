@@ -1,5 +1,5 @@
 import { Directive, computed, input } from '@angular/core';
-import { seed } from '@seed/utils/seed';
+import { seed } from '@seed/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 

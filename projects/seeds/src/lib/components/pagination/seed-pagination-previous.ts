@@ -5,9 +5,9 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft } from '@ng-icons/lucide';
 import { ClassValue } from 'clsx';
 import { SeedPaginationLink } from './seed-pagination-link';
-import { ButtonVariants } from '@seed/components/button/seed-button';
-import { SeedIcon } from '@seed/components/icon/seed-icon';
-import { seed } from '@seed/utils/seed';
+import { ButtonVariants } from '@seed/button';
+import { SeedIcon } from '@seed/icon';
+import { seed } from '@seed/utils';
 
 @Component({
 	selector: 'seed-pagination-previous',

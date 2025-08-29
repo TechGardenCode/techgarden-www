@@ -3,8 +3,8 @@ import { Directive, booleanAttribute, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { type VariantProps, cva } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
-import { buttonVariants, ButtonVariants } from '@seed/components/button/seed-button';
-import { seed } from '@seed/utils/seed';
+import { buttonVariants, ButtonVariants } from '@seed/button';
+import { seed } from '@seed/utils';
 
 export const paginationLinkVariants = cva('', {
 	variants: {},

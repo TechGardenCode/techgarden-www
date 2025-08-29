@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Post } from '@seed/models/post.model';
+import { Post } from '@seed/models';
 
 export type AnchorSection = { fragment: string; title: string, tag: string, children?: AnchorSection[] };
 

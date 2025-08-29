@@ -15,7 +15,7 @@ import { lucideChevronUp } from '@ng-icons/lucide';
 import { Header } from './components/shared/header/header';
 import { HeaderService } from './services/header.service';
 import { ThemeService } from './services/theme.service';
-import { SeedButton } from '@seed/components/button/seed-button';
+import { SeedButton } from '@seed/button';
 import { Footer } from './components/shared/footer/footer';
 
 @Component({

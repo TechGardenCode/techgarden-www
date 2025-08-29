@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { Pagination } from '../../components/shared/pagination/pagination';
-import { Page2 } from '@seed/models/page.model';
+import { Page2 } from '@seed/models';
 
 @Component({
   selector: 'app-blog.page',

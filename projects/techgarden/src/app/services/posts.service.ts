@@ -4,9 +4,7 @@ import { signal } from '@angular/core';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import { of, tap } from 'rxjs';
-import { ApiState } from '@seed/models/api-state.model';
-import { Page } from '@seed/models/page.model';
-import { Post } from '@seed/models/post.model';
+import { ApiState, Page, Post } from '@seed/models';
 
 @Injectable({
   providedIn: 'root',

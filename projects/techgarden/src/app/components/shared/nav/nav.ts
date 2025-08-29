@@ -1,6 +1,6 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { SeedButton } from '@seed/components/button/seed-button';
-import { SeedIcon } from '@seed/components/icon/seed-icon';
+import { SeedButton } from '@seed/button';
+import { SeedIcon } from '@seed/icon';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideDot,
@@ -16,7 +16,7 @@ import {
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../../services/theme.service';
 import { MobileService } from '../../../services/mobile.service';
-import { SeedH1 } from '@seed/typography/seed-h1';
+import { SeedH1 } from '@seed/typography';
 import { environment } from '../../../../environments/environment';
 
 @Component({

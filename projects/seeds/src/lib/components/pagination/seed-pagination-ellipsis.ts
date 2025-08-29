@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
 import type { ClassValue } from 'clsx';
-import { SeedIcon } from '@seed/components/icon/seed-icon';
-import { seed } from '@seed/utils/seed';
+import { SeedIcon } from '@seed/icon';
+import { seed } from '@seed/utils';
 
 @Component({
 	selector: 'seed-pagination-ellipsis',

@@ -3,7 +3,7 @@ import { Header } from '../../../components/shared/header/header';
 import { Footer } from '../../../components/shared/footer/footer';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Anchor } from '../../../components/tmp/anchor/anchor';
-import { SeedH1 } from '@seed/typography/seed-h1';
+import { SeedH1 } from '@seed/typography';
 import { PostGroup } from '../../../components/tmp/post/post-group/post-group';
 import { PostsService } from '../../../services/posts.service';
 import { HeaderService } from '../../../services/header.service';

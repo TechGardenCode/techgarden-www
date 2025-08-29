@@ -4,10 +4,10 @@ import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
 import { ClassValue } from 'clsx';
-import { ButtonVariants } from '@seed/components/button/seed-button';
-import { SeedIcon } from '@seed/components/icon/seed-icon';
+import { ButtonVariants } from '@seed/button';
+import { SeedIcon } from '@seed/icon';
 import { SeedPaginationLink } from './seed-pagination-link';
-import { seed } from '@seed/utils/seed';
+import { seed } from '@seed/utils';
 
 @Component({
 	selector: 'seed-pagination-next',

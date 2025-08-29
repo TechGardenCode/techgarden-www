@@ -7,14 +7,16 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { SeedPagination } from '@seed/components/pagination/seed-pagination';
-import { SeedPaginationContent } from '@seed/components/pagination/seed-pagination-content';
-import { SeedPaginationItem } from '@seed/components/pagination/seed-pagination-item';
-import { SeedPaginationPrevious } from '@seed/components/pagination/seed-pagination-previous';
-import { SeedPaginationNext } from '@seed/components/pagination/seed-pagination-next';
-import { SeedPaginationLink } from '@seed/components/pagination/seed-pagination-link';
-import { SeedPaginationEllipsis } from '@seed/components/pagination/seed-pagination-ellipsis';
-import { Page, Page2 } from '@seed/models/page.model';
+import {
+  SeedPagination,
+  SeedPaginationContent,
+  SeedPaginationItem,
+  SeedPaginationPrevious,
+  SeedPaginationNext,
+  SeedPaginationLink,
+  SeedPaginationEllipsis,
+} from '@seed/pagination';
+import { Page2 } from '@seed/models';
 
 @Component({
   selector: 'app-pagination',

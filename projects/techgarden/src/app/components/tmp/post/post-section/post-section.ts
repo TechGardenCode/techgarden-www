@@ -1,12 +1,10 @@
-import { Component, computed, input, ViewEncapsulation } from '@angular/core';
-import { SeedButton } from '@seed/components/button/seed-button';
+import { Component, input, ViewEncapsulation } from '@angular/core';
+import { SeedButton } from '@seed/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { SeedIcon } from '@seed/components/icon/seed-icon';
+import { SeedIcon } from '@seed/icon';
 import { lucideCodeXml } from '@ng-icons/lucide';
-import { PostSectionType } from '@seed/models/post.model';
-import { SeedH1 } from "@seed/typography/seed-h1";
-import { SeedH2 } from '@seed/typography/seed-h2';
-import { SeedH3 } from '@seed/typography/seed-h3';
+import { PostSectionType } from '@seed/models';
+import { SeedH1, SeedH2, SeedH3 } from '@seed/typography';
 
 @Component({
   selector: 'app-post-section',

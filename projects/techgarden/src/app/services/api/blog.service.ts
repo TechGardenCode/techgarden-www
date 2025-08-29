@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Page, Page2 } from '@seed/models/page.model';
 import { PostMetadata } from '../../models/post-metadata.model';
 import { tap } from 'rxjs';
-import { ApiState } from '@seed/models/api-state.model';
+import { ApiState, Page2 } from '@seed/models';
 
 @Injectable({
   providedIn: 'root',

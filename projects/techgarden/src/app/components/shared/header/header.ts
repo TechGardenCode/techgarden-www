@@ -1,7 +1,7 @@
 import { Component, inject, input, ViewEncapsulation } from '@angular/core';
-import { SeedButton } from '@seed/components/button/seed-button';
-import { SeedIcon } from '@seed/components/icon/seed-icon';
-import { SeedInput } from '@seed/components/input/seed-input';
+import { SeedButton } from '@seed/button';
+import { SeedIcon } from '@seed/icon';
+import { SeedInput } from '@seed/input';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMenu, lucideSearch } from '@ng-icons/lucide';
 import { Breadcrumb } from '../../tmp/breadcrumb/breadcrumb';
