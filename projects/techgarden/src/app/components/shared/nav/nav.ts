@@ -17,7 +17,6 @@ import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../../services/theme.service';
 import { MobileService } from '../../../services/mobile.service';
 import { SeedH1 } from '@seed/typography';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -44,7 +43,6 @@ import { environment } from '../../../../environments/environment';
   },
 })
 export class Nav {
-  environment = environment;
   protected readonly themeService = inject(ThemeService);
   protected readonly mobileService = inject(MobileService);
 }

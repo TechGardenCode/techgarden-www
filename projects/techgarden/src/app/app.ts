@@ -43,10 +43,6 @@ export class App {
         label: 'Home',
         url: '/',
       },
-      {
-        label: 'About',
-        url: '/about',
-      },
     ]);
   }
   _scrollTimeout!: number;
