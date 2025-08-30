@@ -54,13 +54,16 @@ export class BlogPage implements OnInit {
       }
     );
     this.activatedRoute.queryParams.subscribe(({ page }) => {
+      if (!page) {
+        page = 1;
+      }
       this.blogService.getPostMetadata({ page: page - 1 });
     });
   }
 
   ngOnInit() {
-    let { page } = this.activatedRoute.snapshot.queryParams;
-    this.blogService.getPostMetadata({ page: page - 1 });
+    // let { page } = this.activatedRoute.snapshot.queryParams;
+    // this.blogService.getPostMetadata({ page: page - 1 });
   }
 
   onPageChange(event?: Page2<unknown>) {

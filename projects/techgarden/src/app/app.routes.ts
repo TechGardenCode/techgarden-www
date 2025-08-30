@@ -18,9 +18,9 @@ export const routes: Routes = [
       import('./pages/blog/blog-module').then((m) => m.BlogModule),
   },
   {
-    path: 'test',
+    path: 'admin',
     loadChildren: () =>
-      import('./pages/test/test-module').then((m) => m.TestModule),
+      import('./pages/admin/admin-module').then((m) => m.AdminModule),
     canActivate: [() => !environment.production],
   },
   {
