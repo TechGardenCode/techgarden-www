@@ -1,4 +1,4 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { SeedButton } from '@seed/button';
 import { SeedIcon } from '@seed/icon';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -7,16 +7,19 @@ import {
   lucideGithub,
   lucideHouse,
   lucideInfo,
+  lucideLogIn,
+  lucideLogOut,
   lucideMoon,
   lucideNotebookPen,
+  lucideShieldUser,
   lucideSun,
-  lucideTestTube,
   lucideTwitter,
 } from '@ng-icons/lucide';
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../../services/theme.service';
 import { MobileService } from '../../../services/mobile.service';
 import { SeedH1 } from '@seed/typography';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -31,7 +34,9 @@ import { SeedH1 } from '@seed/typography';
       lucideGithub,
       lucideTwitter,
       lucideNotebookPen,
-      lucideTestTube,
+      lucideLogIn,
+      lucideLogOut,
+      lucideShieldUser,
     }),
   ],
   templateUrl: './nav.html',
@@ -42,7 +47,12 @@ import { SeedH1 } from '@seed/typography';
       'p-6 w-full h-full bg-card text-card-foreground border-r border-border flex flex-col gap-4 items-start',
   },
 })
-export class Nav {
+export class Nav implements OnInit {
   protected readonly themeService = inject(ThemeService);
   protected readonly mobileService = inject(MobileService);
+  protected readonly authService = inject(AuthService);
+
+  ngOnInit() {
+    this.authService.checkAuthentication().subscribe();
+  }
 }

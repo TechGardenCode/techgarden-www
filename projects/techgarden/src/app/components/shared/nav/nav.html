@@ -17,7 +17,6 @@
         variant="ghost"
         routerLink="/"
         class="w-full gap-3 justify-start"
-        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideHouse" />
         <span>Home</span>
@@ -29,7 +28,6 @@
         variant="ghost"
         routerLink="/about"
         class="w-full gap-3 justify-start"
-        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideInfo" />
         <span>About</span>
@@ -41,23 +39,50 @@
         variant="ghost"
         routerLink="/blog"
         class="w-full gap-3 justify-start"
-        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideNotebookPen" />
         <span>Blog</span>
       </a>
     </li>
+    @if(authService.authenticated()) {
     <li>
       <a
         seedButton
         variant="ghost"
         routerLink="/admin"
         class="w-full gap-3 justify-start"
-        (click)="mobileService.closeNav()"
       >
-        <ng-icon seedIcon name="lucideTestTube" />
+        <ng-icon seedIcon name="lucideShieldUser" />
         <span>Admin</span>
       </a>
+    </li>
+    }
+  </ul>
+</div>
+<div class="w-full mt-8">
+  <ul class="flex flex-col gap-2 -mx-4">
+    <li>
+      @if (!authService.authenticated()) {
+      <a
+        seedButton
+        variant="ghost"
+        href="/api/auth/login"
+        class="w-full gap-3 justify-start"
+      >
+        <ng-icon seedIcon name="lucideLogIn" />
+        <span>Sign In</span>
+      </a>
+      } @else {
+      <a
+        seedButton
+        variant="ghost"
+        href="/api/auth/logout"
+        class="w-full gap-3 justify-start"
+      >
+        <ng-icon seedIcon name="lucideLogOut" />
+        <span>Sign Out</span>
+      </a>
+      }
     </li>
   </ul>
 </div>
