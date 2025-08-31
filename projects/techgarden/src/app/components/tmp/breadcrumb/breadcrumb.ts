@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbDto } from '@seed/models/breadcrumb.model';
+import { BreadcrumbDto } from '@seed/models';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
 

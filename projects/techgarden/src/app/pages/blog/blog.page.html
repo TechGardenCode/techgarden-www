@@ -1,58 +1,70 @@
-<div class="flex flex-col container max-w-7xl mx-auto p-0 relative">
-  <div class="flex gap-4">
-    <main class="grow">
-      <div class="flex flex-col gap-4">
-        @if(postsApiState().loading) { @for(i of [].constructor(3); track
-        $index) {
-        <div
-          class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"
-        >
-          <div class="shrink-0 md:w-1/2 md:max-w-80 bg-border animate-pulse">
-            <div
-              class="w-full h-full rounded-t-lg md:rounded-l-none md:rounded-r-lg aspect-video object-cover bg-gray-300"
-            ></div>
-          </div>
+<div class="flex gap-4">
+  <main class="grow">
+    <div class="flex flex-col gap-4">
+      @if(postsApiState().loading) { @for(i of [].constructor(3); track $index)
+      {
+      <div
+        class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"
+      >
+        <div class="shrink-0 md:w-1/2 md:max-w-80 bg-border animate-pulse">
           <div
-            class="grow bg-card rounded-b-lg md:rounded-r-none md:rounded-l-lg border border-s border-border"
-          >
-            <div class="flex flex-col p-6">
-              <h2 class="bg-border w-1/2 h-5 my-1 rounded-lg"></h2>
-              <p class="bg-border w-3/4 h-4 my-1 rounded-lg"></p>
-              <div class="mt-3 bg-border w-24 h-4 mb-1 rounded-lg"></div>
+            class="w-full h-full rounded-t-lg md:rounded-l-none md:rounded-r-lg aspect-video object-cover bg-gray-300"
+          ></div>
+        </div>
+        <div
+          class="grow bg-card rounded-b-lg md:rounded-r-none md:rounded-l-lg border border-s border-border"
+        >
+          <div class="flex flex-col p-6">
+            <h2 class="bg-border w-1/2 h-5 my-1 rounded-lg"></h2>
+            <p class="bg-border w-3/4 h-4 my-1 rounded-lg"></p>
+            <div class="mt-3 bg-border w-24 h-4 mb-1 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+      } } @else { @if (postsApiState().data?.content?.length === 0) {
+      <p class="text-center">No content available!</p>
+      } @for(post of postsApiState().data?.content; track $index) {
+      <a
+        routerLink="/blog/{{ post.id }}"
+        class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"
+      >
+        <div class="shrink-0 md:w-1/2 md:max-w-80">
+          <img
+            [src]="post.imageUrl"
+            alt="Post Image"
+            class="w-full h-full rounded-t-lg md:rounded-l-none md:rounded-r-lg aspect-video object-cover bg-border"
+          />
+        </div>
+        <div
+          class="grow bg-card rounded-b-lg md:rounded-r-none md:rounded-l-lg border border-s border-border"
+        >
+          <div class="flex flex-col p-6">
+            <h2
+              class="text-xl font-bold line-clamp-2 mb-2 truncate whitespace-normal"
+            >
+              {{ post.title }}
+            </h2>
+            <p class="text-secondary-foreground line-clamp-2 mb-4">
+              {{ post.description }}
+            </p>
+            <div
+              class="text-secondary-foreground text-sm flex gap-2 items-center"
+            >
+              <ng-icon name="lucideCalendar"></ng-icon>
+              <span>{{ post.createdAt | date : "mediumDate" }}</span>
             </div>
           </div>
         </div>
-        } } @else { @for(post of postsApiState().data?.content; track $index) {
-        <a
-          routerLink="/blog/{{ post.id }}"
-          class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"
-        >
-          <div class="shrink-0 md:w-1/2 md:max-w-80">
-            <img
-              [src]="post.imageUrl"
-              alt="Post Image"
-              class="w-full h-full rounded-t-lg md:rounded-l-none md:rounded-r-lg aspect-video object-cover bg-border"
-            />
-          </div>
-          <div
-            class="grow bg-card rounded-b-lg md:rounded-r-none md:rounded-l-lg border border-s border-border"
-          >
-            <div class="flex flex-col p-6">
-              <h2
-                class="text-xl font-bold line-clamp-2 truncate whitespace-normal"
-              >
-                {{ post.title }}
-              </h2>
-              <p class="text-secondary-foreground line-clamp-2">{{ post.description }}</p>
-              <div class="mt-2 text-secondary-foreground">{{ post.createdAt | date: 'mediumDate' }}</div>
-            </div>
-          </div>
-        </a>
-        } }
-      </div>
-    </main>
-    <aside class="hidden lg:block w-64 shrink-0 relative">
-      <app-anchor />
-    </aside>
-  </div>
+      </a>
+      }
+      <app-pagination
+        [page]="postsApiState().data"
+        (pageChange)="onPageChange($event)"
+      />
+      }
+    </div>
+  </main>
+  <aside class="hidden lg:block w-64 shrink-0 relative">
+    <app-anchor />
+  </aside>
 </div>

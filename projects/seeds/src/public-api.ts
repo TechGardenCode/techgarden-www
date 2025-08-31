@@ -2,10 +2,7 @@
  * Public API Surface of seeds
  */
 
-export * from './lib/seeds';
 export * from './lib/components/public-api';
-export * from './lib/typography/seed-h1';
-export * from './lib/typography/seed-h2';
-export * from './lib/typography/seed-h3';
-
+export * from './lib/typography/public-api';
 export * from './lib/models/public-api';
+export * from './lib/utils/public-api';

@@ -1,6 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 import { PostSection } from '../post-section/post-section';
-import { PostSectionType } from '@seed/models/post.model';
+import { PostSectionType } from '@seed/models';
 
 @Component({
   selector: 'app-post-group',

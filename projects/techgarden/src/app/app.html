@@ -9,11 +9,13 @@
   [attr.data-mobile-open]="mobileService.isNavOpen()"
 >
   <app-header class="mb-12" [breadcrumbItems]="headerService.breadcrumbs()" />
-  <router-outlet />
+  <div class="flex flex-col container max-w-6xl mx-auto px-0 relative">
+    <router-outlet />
+  </div>
   <app-footer class="mt-auto" />
 </div>
 <div
-  class="h-dvh w-dvw fixed inset-0 z-10 hidden data-[mobile-open=true]:block "
+  class="h-dvh w-dvw fixed inset-0 z-10 hidden data-[mobile-open=true]:block"
   (click)="mobileService.closeNav()"
   [attr.data-mobile-open]="mobileService.isNavOpen()"
 ></div>
@@ -21,7 +23,7 @@
   class="fixed w-full lg:w-[calc(100%-16rem)] lg:left-64 bottom-16 data-[scrolled-y=true]:block hidden z-50"
   [attr.data-scrolled-y]="pageScrolledY()"
 >
-  <div class="lg:max-w-7xl mx-auto relative">
+  <div class="lg:max-w-6xl mx-auto relative">
     <button
       seedButton
       variant="secondary"

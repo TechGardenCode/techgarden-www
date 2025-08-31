@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Post } from '@seed/models/post.model';
+import { Post } from '@seed/models';
 
 export type AnchorSection = { fragment: string; title: string, tag: string, children?: AnchorSection[] };
 
@@ -21,7 +21,6 @@ export class Anchor {
   }
 
   parseSections(sections: AnchorSection[]) {
-
     const parsedSections: AnchorSection[] = [];
     for (let i = 0; i < sections.length; i++) {
       if (sections[i].tag === 'h3') {

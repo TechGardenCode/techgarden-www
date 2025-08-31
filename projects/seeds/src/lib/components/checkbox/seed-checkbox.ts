@@ -12,7 +12,7 @@
 // import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 // import { NgIcon, provideIcons } from '@ng-icons/core';
 // import { lucideCheck } from '@ng-icons/lucide';
-// import { seed } from '@seed/utils/seed';
+// import { seed } from '@seed/utils';
 // import type { ClassValue } from 'clsx';
 
 // export const HLM_CHECKBOX_VALUE_ACCESSOR = {

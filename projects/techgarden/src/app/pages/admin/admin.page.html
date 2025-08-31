@@ -1,0 +1,41 @@
+<div class="flex gap-4">
+  <main class="grow">
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2 items-start h-dvh">
+        <h2 seedH2 id="blog">Blog</h2>
+        <form class="flex flex-col gap-2 items-start" [formGroup]="blogForm" (ngSubmit)="createPost()">
+          <div formGroupName="metadata">
+            <label>Title</label>
+            <input seedInput type="text" formControlName="title" />
+          </div>
+          <div formGroupName="metadata">
+            <label>Description</label>
+            <textarea
+              class="h-auto"
+              seedInput
+              rows="4"
+              cols="50"
+              formControlName="description"
+            ></textarea>
+          </div>
+          <div formGroupName="body">
+            <label>Content</label>
+            <textarea
+              class="h-auto"
+              seedInput
+              rows="12"
+              cols="50"
+              formControlName="content"
+            ></textarea>
+          </div>
+          <button seedButton type="submit">Create post</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <aside class="hidden lg:block w-64 shrink-0 relative">
+    <app-anchor
+      [sections]="[[{ fragment: 'blog', title: 'Blog', tag: 'h2' }]]"
+    />
+  </aside>
+</div>

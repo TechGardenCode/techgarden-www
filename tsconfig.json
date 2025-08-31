@@ -12,7 +12,25 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "paths": {
-      "@seed/*": ["./projects/seeds/src/lib/*"]
+      "@seed/button": [
+        "./projects/seeds/src/lib/components/button/public-api.ts"
+      ],
+      "@seed/checkbox": [
+        "./projects/seeds/src/lib/components/checkbox/public-api.ts"
+      ],
+      "@seed/form-field": [
+        "./projects/seeds/src/lib/components/form-field/public-api.ts"
+      ],
+      "@seed/icon": ["./projects/seeds/src/lib/components/icon/public-api.ts"],
+      "@seed/input": [
+        "./projects/seeds/src/lib/components/input/public-api.ts"
+      ],
+      "@seed/pagination": [
+        "./projects/seeds/src/lib/components/pagination/public-api.ts"
+      ],
+      "@seed/typography": ["./projects/seeds/src/lib/typography/public-api.ts"],
+      "@seed/utils": ["./projects/seeds/src/lib/utils/public-api.ts"],
+      "@seed/models": ["./projects/seeds/src/lib/models/public-api.ts"],
     },
     "importHelpers": true,
     "target": "ES2022",

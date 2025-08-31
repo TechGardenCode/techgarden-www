@@ -11,7 +11,7 @@ import {
   untracked,
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { seed } from '@seed/utils/seed';
+import { seed } from '@seed/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 import { SeedFormFieldControl } from '../form-field/seed-form-field-control';

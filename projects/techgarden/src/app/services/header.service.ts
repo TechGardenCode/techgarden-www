@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { BreadcrumbDto } from '@seed/models/breadcrumb.model';
+import { BreadcrumbDto } from '@seed/models';
 
 @Injectable({
   providedIn: 'root',

@@ -1,0 +1,62 @@
+<nav seedPagination>
+  <ul seedPaginationContent>
+    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) - 1)">
+      <seed-pagination-previous />
+    </li>
+
+    <!-- Show if Page >= 2 -->
+    @if ((page()?.number || 0) >= 2) {
+    <!-- First Page -->
+    <li seedPaginationItem (click)="setPageNumber(0)">
+      <a seedPaginationLink>1</a>
+    </li>
+    <!-- Show if Page >= 3 -->
+    @if ((page()?.number || 0) >= 3) {
+    <li seedPaginationItem>
+      <seed-pagination-ellipsis />
+    </li>
+    } }
+
+    <!-- Show if Page > 1 -->
+    @if ((page()?.number || 0) > 0) {
+    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) - 1)">
+      <a seedPaginationLink>{{ page()?.number || 0 }}</a>
+    </li>
+    }
+
+    <!-- Active Page -->
+    <li seedPaginationItem>
+      <a seedPaginationLink isActive>{{ (page()?.number || 0) + 1 }}</a>
+    </li>
+
+    <!-- Show if Page < Total Pages - 1 -->
+    @if((page()?.number || 0) < (page()?.totalPages || 0) - 1) {
+    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) + 1)">
+      <a seedPaginationLink>{{ (page()?.number || 0) + 2 }}</a>
+    </li>
+    }
+
+    <!-- Show if Page < Total Pages - 1 - 2 -->
+    @if ((page()?.number || 0) <= (page()?.totalPages || 0) - 3) {
+
+    <!-- Show if Page < Total Pages - 1 - 3 -->
+    @if((page()?.number || 0) <= (page()?.totalPages || 0) - 4) {
+    <li seedPaginationItem>
+      <seed-pagination-ellipsis />
+    </li>
+    }
+
+    <!-- Last Page -->
+    <li
+      seedPaginationItem
+      (click)="setPageNumber((page()?.totalPages || 0) - 1)"
+    >
+      <a seedPaginationLink>{{ page()?.totalPages }}</a>
+    </li>
+    }
+
+    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) + 1)">
+      <seed-pagination-next />
+    </li>
+  </ul>
+</nav>

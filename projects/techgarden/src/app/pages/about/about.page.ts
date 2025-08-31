@@ -1,7 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
-import { SeedH1 } from '@seed/typography/seed-h1';
-import { SeedH2 } from '@seed/typography/seed-h2';
+import { SeedH1, SeedH2 } from '@seed/typography';
 
 @Component({
   selector: 'app-about.page',
