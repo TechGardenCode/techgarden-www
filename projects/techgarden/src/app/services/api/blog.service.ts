@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { PostMetadata } from '../../models/post-metadata.model';
-import { tap } from 'rxjs';
-import { ApiState, Page2 } from '@seed/models';
+import { delay, tap } from 'rxjs';
+import { ApiState, Page } from '@seed/models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ import { ApiState, Page2 } from '@seed/models';
 export class BlogService {
   protected readonly http = inject(HttpClient);
 
-  postMetadataApiState = signal<ApiState<Page2<PostMetadata>>>({
+  postMetadataApiState = signal<ApiState<Page<PostMetadata>>>({
     loading: false,
     error: null,
     firstLoad: true,
@@ -28,7 +28,7 @@ export class BlogService {
       loading: true,
     }));
     return this.http
-      .get<Page2<PostMetadata>>(`/api/blog/posts/metadata`, {
+      .get<Page<PostMetadata>>(`/api/blog/posts/metadata`, {
         params: { page, size },
       })
       .pipe(

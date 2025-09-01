@@ -1,6 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
-import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Anchor } from '../../components/tmp/anchor/anchor';
 import { BlogService } from '../../services/api/blog.service';
@@ -8,7 +7,7 @@ import { DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { Pagination } from '../../components/shared/pagination/pagination';
-import { Page2 } from '@seed/models';
+import { Page } from '@seed/models';
 
 @Component({
   selector: 'app-blog.page',
@@ -18,12 +17,10 @@ import { Page2 } from '@seed/models';
   styleUrl: './blog.page.css',
 })
 export class BlogPage implements OnInit {
-  protected readonly postsService = inject(PostsService);
   protected readonly blogService = inject(BlogService);
   protected readonly router = inject(Router);
   protected readonly activatedRoute = inject(ActivatedRoute);
 
-  posts = this.postsService.markdownPosts;
   postsApiState = computed(() => this.blogService.postMetadataApiState());
   breadcrumbItems = [{ url: '/', label: 'Home' }];
   page = computed(() => {
@@ -66,7 +63,7 @@ export class BlogPage implements OnInit {
     // this.blogService.getPostMetadata({ page: page - 1 });
   }
 
-  onPageChange(event?: Page2<unknown>) {
+  onPageChange(event?: Page<unknown>) {
     if (!event) {
       return;
     }

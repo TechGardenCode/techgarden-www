@@ -1,23 +1,5 @@
 export type Page<T> = {
   content: T[];
-  page: {
-    size: number;
-    number: number;
-    totalElements: number;
-    totalPages: number;
-  };
-  totalElements?: number;
-  totalPages?: number;
-  size?: number;
-  numberOfElements?: number;
-  first?: boolean;
-  last?: boolean;
-  empty?: boolean;
-  number?: number;
-};
-
-export type Page2<T> = {
-  content: T[];
   pageable: {
     pageNumber: number;
     pageSize: number;

@@ -1,36 +1,60 @@
 <div class="flex gap-4">
   <main class="w-full lg:w-[calc(100%-16rem-1rem)] mr-auto">
-    <h1 seedH1 class="mb-8">{{ post()?.metadata.title }}</h1>
+    @if (post2().loading) {
+    <div class="h-9 mb-8 w-64 bg-border animate-pulse rounded-lg"></div>
+    <div class="flex gap-2 mb-3">
+      <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+      <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+    </div>
+    <div class="animate-pulse mb-4">
+      <div
+        class="w-full h-full rounded-lg aspect-video object-cover bg-border"
+      ></div>
+    </div>
+    <div class="mb-6">
+      <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+    </div>
+    <div class="mt-8 mb-6 h-8 bg-border animate-pulse rounded-lg w-64"></div>
+    <div class="w-full py-1">
+      <div class="w-11/12 h-4 mb-2 bg-border animate-pulse rounded-lg"></div>
+      <div class="w-11/12 h-4 mb-2 bg-border animate-pulse rounded-lg"></div>
+      <div class="w-full h-4 mb-2 bg-border animate-pulse rounded-lg"></div>
+      <div class="w-10/12 h-4 mb-2 bg-border animate-pulse rounded-lg"></div>
+      <div class="w-9/12 h-4 mb-2 bg-border animate-pulse rounded-lg"></div>
+    </div>
+    } @else if (post2().data) {
+    <h1 seedH1 class="mb-8">{{ post2().data?.metadata?.title }}</h1>
     <div class="flex gap-2 mb-3 text-xs">
       <p>
         Posted
         <span class="font-semibold">{{
-          post()?.metadata.createdAt | date
+          post2().data?.metadata?.createdAt | date
         }}</span>
       </p>
       <p>
         Updated
         <span class="font-semibold">{{
-          post()?.metadata.updatedAt | date
+          post2().data?.metadata?.updatedAt | date
         }}</span>
       </p>
     </div>
     <img
-      [src]="post()?.metadata.imageUrl"
-      alt="{{ post()?.metadata.title }}"
+      [src]="post2().data?.metadata?.imageUrl"
+      alt="{{ post2().data?.metadata?.title }}"
       class="mb-4 aspect-video w-full max-w-[800px] object-cover rounded-lg"
     />
     <p class="text-xs mb-6">
-      By <span class="font-semibold">{{ post()?.metadata.author }}</span>
+      By <span class="font-semibold">{{ post2().data?.metadata?.author }}</span>
     </p>
     <div class="break-words">
-      @if (mdPost()) {
+      @if (post2().data?.body?.content) {
       <app-post-group
-        [postMarkdown]="mdPost()"
+        [postMarkdown]="post2().data?.body?.content"
         (postContents)="postContents.set($event)"
       />
       }
     </div>
+    }
   </main>
   <aside class="hidden lg:block w-64 shrink-0 relative">
     <app-anchor [sections]="[postContents()]" />
