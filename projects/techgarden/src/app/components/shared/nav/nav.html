@@ -17,6 +17,7 @@
         variant="ghost"
         routerLink="/"
         class="w-full gap-3 justify-start"
+        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideHouse" />
         <span>Home</span>
@@ -28,6 +29,7 @@
         variant="ghost"
         routerLink="/about"
         class="w-full gap-3 justify-start"
+        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideInfo" />
         <span>About</span>
@@ -39,6 +41,7 @@
         variant="ghost"
         routerLink="/blog"
         class="w-full gap-3 justify-start"
+        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideNotebookPen" />
         <span>Blog</span>
@@ -51,6 +54,7 @@
         variant="ghost"
         routerLink="/admin"
         class="w-full gap-3 justify-start"
+        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideShieldUser" />
         <span>Admin</span>
@@ -68,6 +72,7 @@
         variant="ghost"
         href="/api/auth/login"
         class="w-full gap-3 justify-start"
+        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideLogIn" />
         <span>Sign In</span>
@@ -78,6 +83,7 @@
         variant="ghost"
         href="/api/auth/logout"
         class="w-full gap-3 justify-start"
+        (click)="mobileService.closeNav()"
       >
         <ng-icon seedIcon name="lucideLogOut" />
         <span>Sign Out</span>

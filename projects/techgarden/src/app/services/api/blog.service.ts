@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { PostMetadata } from '../../models/post-metadata.model';
 import { delay, tap } from 'rxjs';
-import { ApiState, Page } from '@seed/models';
+import { ApiState, DeepPartial, Page, Post, Post2 } from '@seed/models';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +63,14 @@ export class BlogService {
   }
 
   getPostById(id: string) {
-    return this.http.get(`/api/blog/posts/${id}`);
+    return this.http.get<Post2>(`/api/blog/posts/${id}`);
+  }
+
+  createPost(post: DeepPartial<Post2>) {
+    return this.http.post<Post2>(`/api/blog/posts`, post);
+  }
+
+  savePost(post: DeepPartial<Post2>) {
+    return this.http.put<Post2>(`/api/blog/posts/${post.id}`, post);
   }
 }

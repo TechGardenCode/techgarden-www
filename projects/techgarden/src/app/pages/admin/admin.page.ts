@@ -3,14 +3,14 @@ import { HeaderService } from '../../services/header.service';
 import { SeedButton } from '@seed/button';
 import { TestService } from '../../services/test/test.service';
 import { Anchor } from '../../components/tmp/anchor/anchor';
-import { SeedH2 } from '@seed/typography';
+import { SeedH2, SeedH3 } from '@seed/typography';
 import { SeedInput } from '@seed/input';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin.page',
-  imports: [SeedButton, Anchor, SeedH2, SeedInput, ReactiveFormsModule],
+  imports: [SeedButton, Anchor, SeedH2, SeedH3, SeedInput, ReactiveFormsModule, RouterModule],
   templateUrl: './admin.page.html',
   styleUrl: './admin.page.css',
 })
@@ -53,8 +53,8 @@ Nam varius fermentum lorem a pulvinar. Donec ut massa facilisis, suscipit arcu a
     this.headerService.setBreadcrumbs(
       [
         {
-          label: 'Test',
-          url: '/test',
+          label: 'Admin',
+          url: '/admin',
         },
       ],
       {

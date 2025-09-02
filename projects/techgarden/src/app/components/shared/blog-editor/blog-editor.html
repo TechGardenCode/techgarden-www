@@ -1,0 +1,57 @@
+<form
+  class="flex flex-col gap-4"
+  (ngSubmit)="submitForm()"
+  [formGroup]="blogPostFormGroup"
+>
+  <div class="flex flex-col md:max-w-96">
+    <label for="postTitle">Title</label>
+    <input
+      formControlName="title"
+      id="postTitle"
+      seedInput
+      type="text"
+      placeholder="My awesome blog post"
+    />
+  </div>
+
+  <div class="flex flex-col grow md:max-w-96">
+    <label for="description">Description</label>
+    <textarea
+      class="h-auto"
+      id="description"
+      rows="4"
+      formControlName="description"
+      seedInput
+      type="text"
+      placeholder="A captivating summary that sets the scene!"
+    ></textarea>
+  </div>
+
+  <div class="flex flex-col md:max-w-96">
+    <label for="postImageUrl">Image URL</label>
+    <input
+      id="postImageUrl"
+      seedInput
+      type="text"
+      placeholder="https://example.com/image.png"
+      formControlName="imageUrl"
+    />
+  </div>
+
+  <div class="flex flex-col grow">
+    <label for="postContent">Post Content</label>
+    <textarea
+      class="h-auto"
+      id="postContent"
+      rows="16"
+      seedInput
+      type="text"
+      placeholder="Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean..."
+      formControlName="content"
+    ></textarea>
+  </div>
+
+  <button class="md:self-start cursor-pointer" size="lg" seedButton type="submit">
+    {{ update() ? "Update Post" : "Create Post" }}
+  </button>
+</form>

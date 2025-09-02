@@ -1,0 +1,5 @@
+@if(post()) {
+<div class="mr-[272px]">
+  <app-blog-editor [post]="post()" update="true" (onSubmit)="onSubmit($event)"></app-blog-editor>
+</div>
+}

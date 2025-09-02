@@ -1,0 +1,14 @@
+<div class="p-4 rounded-lg bg-secondary drop-shadow">
+  @for (block of blocks; track block.id) {
+  <div class="flex gap-2 items-center">
+    <div class="shrink w-8 text-right">{{ $index }}</div>
+    <app-text-editor-block
+      class="grow outline-0"
+      [block]="block"
+      (blockChange)="onBlockChange($index, $event)"
+      (onEnter)="onBlockEnter($index)"
+      (onVerticalNav)="onBlockVerticalNav($index, $event)"
+    ></app-text-editor-block>
+  </div>
+  }
+</div>
