@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Anchor } from '../../components/tmp/anchor/anchor';
@@ -16,10 +16,11 @@ import { Page } from '@seed/models';
   templateUrl: './blog.page.html',
   styleUrl: './blog.page.css',
 })
-export class BlogPage implements OnInit {
+export class BlogPage {
   protected readonly blogService = inject(BlogService);
   protected readonly router = inject(Router);
   protected readonly activatedRoute = inject(ActivatedRoute);
+  protected readonly headerService = inject(HeaderService);
 
   postsApiState = computed(() => this.blogService.postMetadataApiState());
   breadcrumbItems = [{ url: '/', label: 'Home' }];
@@ -38,7 +39,7 @@ export class BlogPage implements OnInit {
     return number;
   });
 
-  constructor(private readonly headerService: HeaderService) {
+  constructor() {
     this.headerService.setBreadcrumbs(
       [
         {
@@ -56,11 +57,6 @@ export class BlogPage implements OnInit {
       }
       this.blogService.getPostMetadata({ page: page - 1 });
     });
-  }
-
-  ngOnInit() {
-    // let { page } = this.activatedRoute.snapshot.queryParams;
-    // this.blogService.getPostMetadata({ page: page - 1 });
   }
 
   onPageChange(event?: Page<unknown>) {

@@ -2,17 +2,16 @@ import { BooleanInput } from '@angular/cdk/coercion';
 import {
   booleanAttribute,
   Component,
-  computed,
   effect,
   inject,
   input,
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SeedButton } from '@seed/button';
 import { SeedInput } from '@seed/input';
-import { Post, Post2 } from '@seed/models';
+import { Post2 } from '@seed/models';
 
 @Component({
   selector: 'app-blog-editor',
@@ -33,7 +32,8 @@ export class BlogEditor {
   update = input<boolean, BooleanInput>(false, {
     transform: booleanAttribute,
   });
-  onSubmit = output<{
+
+  postSubmit = output<{
     title: string;
     description: string;
     imageUrl: string;
@@ -65,6 +65,6 @@ export class BlogEditor {
     ) {
       return;
     }
-    this.onSubmit.emit(this.blogPostFormGroup.getRawValue());
+    this.postSubmit.emit(this.blogPostFormGroup.getRawValue());
   }
 }

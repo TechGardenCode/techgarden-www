@@ -1,4 +1,4 @@
-import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { BlogEditor } from '../../../../../components/shared/blog-editor/blog-editor';
 import { DeepPartial, Post2 } from '@seed/models';
 import { Router } from '@angular/router';
@@ -39,7 +39,7 @@ export class BlogPostCreatePage {
     );
   }
 
-  onSubmit({
+  postSubmit({
     title,
     description,
     imageUrl,

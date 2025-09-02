@@ -2,7 +2,7 @@ import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { BlogEditor } from '../../../../../components/shared/blog-editor/blog-editor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../../../../../services/api/blog.service';
-import { Post, Post2 } from '@seed/models';
+import { Post2 } from '@seed/models';
 import { HeaderService } from '../../../../../services/header.service';
 
 @Component({
@@ -56,7 +56,7 @@ export class BlogPostEditPage implements OnInit {
     });
   }
 
-  onSubmit({
+  postSubmit({
     title,
     description,
     imageUrl,

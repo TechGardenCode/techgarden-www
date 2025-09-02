@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -15,7 +15,7 @@ import { HeaderService } from '../../../services/header.service';
   providers: [provideIcons({ lucideCalendar })],
   templateUrl: './blog.page.html',
 })
-export class AdminBlogPage implements OnInit {
+export class AdminBlogPage {
   protected readonly blogService = inject(BlogService);
   protected readonly router = inject(Router);
   protected readonly activatedRoute = inject(ActivatedRoute);
@@ -60,11 +60,6 @@ export class AdminBlogPage implements OnInit {
       }
       this.blogService.getPostMetadata({ page: page - 1 });
     });
-  }
-
-  ngOnInit() {
-    // let { page } = this.activatedRoute.snapshot.queryParams;
-    // this.blogService.getPostMetadata({ page: page - 1 });
   }
 
   onPageChange(event?: Page<unknown>) {

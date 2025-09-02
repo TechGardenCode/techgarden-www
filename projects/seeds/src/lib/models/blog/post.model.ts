@@ -1,13 +1,13 @@
-export type Post = {
+export interface Post {
   id: string;
   title: string;
   description: string;
   date: string;
   fileName: string;
   imageUrl: string;
-};
+}
 
-export type PostSectionType = {
+export interface PostSectionType {
   tag: 'h1' | 'h2' | 'h3' | 'code' | 'li' | 'blockquote' | 'p' | 'a' | 'img';
   content: string | string[];
   meta?: {
@@ -16,16 +16,16 @@ export type PostSectionType = {
     href?: string;
     id?: string;
   };
-};
+}
 
-export type Post2 = {
+export interface Post2 {
   id: string;
   metadata: PostMetadata;
   body: PostBody;
   createdAt: string;
   updatedAt: string;
-};
-export type PostMetadata = {
+}
+export interface PostMetadata {
   id: string;
   title: string;
   description: string;
@@ -35,10 +35,10 @@ export type PostMetadata = {
   imageUrl: string;
   createdAt: string;
   updatedAt: string;
-};
-export type PostBody = {
+}
+export interface PostBody {
   id: string;
   content: string;
   createdAt: string;
   updatedAt: string;
-};
+}

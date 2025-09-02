@@ -20,7 +20,6 @@ export class PostsPage implements OnInit {
   protected readonly activatedRoute = inject(ActivatedRoute);
 
   postContents = signal<{ fragment: string; title: string; tag: string }[]>([]);
-  post = signal<any>(undefined);
   breadcrumbItems = [{ url: '/', label: 'Home' }];
   mdPost = signal<string>('');
 
@@ -56,13 +55,12 @@ export class PostsPage implements OnInit {
       firstLoad: false,
     });
     this.blogService.getPostById(postId).subscribe({
-      next: (post: any) => {
+      next: (post: Post2) => {
         this.post2.set({
           loading: false,
           firstLoad: false,
           data: post,
         });
-        this.post.set(post);
         this.mdPost.set(post.body.content || '');
         this.headerService.addBreadcrumb({
           label: post.metadata.title,

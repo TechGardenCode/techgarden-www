@@ -1,4 +1,4 @@
-export type Page<T> = {
+export interface Page<T> {
   content: T[];
   pageable: {
     pageNumber: number;
@@ -17,10 +17,10 @@ export type Page<T> = {
   sort: Sort;
   numberOfElements: number;
   empty: boolean;
-};
+}
 
-export type Sort = {
+export interface Sort {
   empty: boolean;
   unsorted: boolean;
   sorted: boolean;
-};
+}

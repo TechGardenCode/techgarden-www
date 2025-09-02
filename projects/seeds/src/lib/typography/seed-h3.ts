@@ -6,8 +6,4 @@ import { Directive } from '@angular/core';
     class: 'text-xl',
   },
 })
-export class SeedH3 {
-
-  constructor() { }
-
-}
+export class SeedH3 {}

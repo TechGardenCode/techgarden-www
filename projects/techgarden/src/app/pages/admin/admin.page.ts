@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
 import { SeedButton } from '@seed/button';
-import { TestService } from '../../services/test/test.service';
 import { Anchor } from '../../components/tmp/anchor/anchor';
 import { SeedH2 } from '@seed/typography';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +14,6 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class AdminPage {
   protected readonly headerService = inject(HeaderService);
-  protected readonly testService = inject(TestService);
   protected readonly router = inject(Router);
 
   blogForm = new FormGroup({
@@ -60,13 +58,5 @@ Nam varius fermentum lorem a pulvinar. Donec ut massa facilisis, suscipit arcu a
         withDefaults: true,
       }
     );
-  }
-
-  createPost() {
-    this.testService.createPost(this.blogForm.value).subscribe({
-      next: (post: any) => {
-        this.router.navigate(['/blog', post.id]);
-      },
-    });
   }
 }

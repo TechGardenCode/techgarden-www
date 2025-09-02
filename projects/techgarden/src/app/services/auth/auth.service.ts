@@ -9,7 +9,7 @@ export class AuthService {
   http = inject(HttpClient);
 
   authenticated = signal(false);
-  user = signal<any>(undefined);
+  user = signal<{ fullName: string } | undefined>(undefined);
 
   checkAuthentication() {
     return this.http
@@ -18,7 +18,7 @@ export class AuthService {
         withCredentials: true,
       })
       .pipe(
-        tap(({ body }) => this.user.set(body)),
+        tap(({ body }) => this.user.set(body as { fullName: string })),
         map((res: HttpResponse<unknown>) => {
           this.authenticated.set(res.ok);
           return res.ok;

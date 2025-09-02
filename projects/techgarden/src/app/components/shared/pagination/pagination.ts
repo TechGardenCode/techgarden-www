@@ -1,11 +1,4 @@
-import {
-  Component,
-  inject,
-  input,
-  model,
-  output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, model, ViewEncapsulation } from '@angular/core';
 
 import {
   SeedPagination,

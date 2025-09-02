@@ -2,12 +2,12 @@ import { Component, computed, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Post } from '@seed/models';
 
-export type AnchorSection = {
+export interface AnchorSection {
   fragment: string;
   title: string;
   tag: string;
   children?: AnchorSection[];
-};
+}
 
 @Component({
   selector: 'app-anchor',

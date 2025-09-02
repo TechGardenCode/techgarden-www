@@ -49,6 +49,16 @@
           "options": {
             "tsConfig": "projects/seeds/tsconfig.spec.json"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/seeds/**/*.ts",
+              "projects/seeds/**/*.html"
+            ],
+            "eslintConfig": "projects/seeds/eslint.config.js"
+          }
         }
       }
     },
@@ -70,7 +80,9 @@
                 "input": "projects/techgarden/public"
               }
             ],
-            "styles": ["projects/techgarden/src/styles.css"]
+            "styles": [
+              "projects/techgarden/src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -113,7 +125,9 @@
             }
           },
           "defaultConfiguration": "development",
-          "options": { "proxyConfig": "projects/techgarden/src/proxy.conf.json" }
+          "options": {
+            "proxyConfig": "projects/techgarden/src/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
@@ -128,7 +142,19 @@
                 "input": "projects/techgarden/public"
               }
             ],
-            "styles": ["projects/techgarden/src/styles.css"]
+            "styles": [
+              "projects/techgarden/src/styles.css"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/techgarden/**/*.ts",
+              "projects/techgarden/**/*.html"
+            ],
+            "eslintConfig": "projects/techgarden/eslint.config.js"
           }
         }
       }
