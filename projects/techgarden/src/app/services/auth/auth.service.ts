@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { catchError, map, of } from 'rxjs';
+import { catchError, map, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,7 @@ export class AuthService {
   http = inject(HttpClient);
 
   authenticated = signal(false);
+  user = signal<any>(undefined);
 
   checkAuthentication() {
     return this.http
@@ -17,6 +18,7 @@ export class AuthService {
         withCredentials: true,
       })
       .pipe(
+        tap(({ body }) => this.user.set(body)),
         map((res: HttpResponse<unknown>) => {
           this.authenticated.set(res.ok);
           return res.ok;
@@ -29,9 +31,5 @@ export class AuthService {
           return of(true);
         })
       );
-  }
-
-  me() {
-    return this.http.get('/api/auth/me');
   }
 }

@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Post } from '@seed/models';
@@ -12,7 +11,7 @@ export type AnchorSection = {
 
 @Component({
   selector: 'app-anchor',
-  imports: [RouterModule, NgClass],
+  imports: [RouterModule],
   templateUrl: './anchor.html',
   styleUrl: './anchor.css',
 })

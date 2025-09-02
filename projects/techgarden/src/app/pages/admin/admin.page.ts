@@ -3,14 +3,13 @@ import { HeaderService } from '../../services/header.service';
 import { SeedButton } from '@seed/button';
 import { TestService } from '../../services/test/test.service';
 import { Anchor } from '../../components/tmp/anchor/anchor';
-import { SeedH2, SeedH3 } from '@seed/typography';
-import { SeedInput } from '@seed/input';
+import { SeedH2 } from '@seed/typography';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin.page',
-  imports: [SeedButton, Anchor, SeedH2, SeedH3, SeedInput, ReactiveFormsModule, RouterModule],
+  imports: [SeedButton, Anchor, SeedH2, ReactiveFormsModule, RouterModule],
   templateUrl: './admin.page.html',
   styleUrl: './admin.page.css',
 })

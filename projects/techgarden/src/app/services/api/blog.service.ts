@@ -3,12 +3,14 @@ import { inject, Injectable, signal } from '@angular/core';
 import { PostMetadata } from '../../models/post-metadata.model';
 import { delay, tap } from 'rxjs';
 import { ApiState, DeepPartial, Page, Post, Post2 } from '@seed/models';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
   protected readonly http = inject(HttpClient);
+  protected readonly authService = inject(AuthService);
 
   postMetadataApiState = signal<ApiState<Page<PostMetadata>>>({
     loading: false,
@@ -67,10 +69,18 @@ export class BlogService {
   }
 
   createPost(post: DeepPartial<Post2>) {
+    post = {
+      ...post,
+      metadata: { ...post.metadata, author: this.authService.user().fullName },
+    };
     return this.http.post<Post2>(`/api/blog/posts`, post);
   }
 
   savePost(post: DeepPartial<Post2>) {
+    post = {
+      ...post,
+      metadata: { ...post.metadata, author: this.authService.user().fullName },
+    };
     return this.http.put<Post2>(`/api/blog/posts/${post.id}`, post);
   }
 }

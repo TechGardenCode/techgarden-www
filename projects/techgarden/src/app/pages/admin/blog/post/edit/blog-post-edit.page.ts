@@ -3,6 +3,7 @@ import { BlogEditor } from '../../../../../components/shared/blog-editor/blog-ed
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../../../../../services/api/blog.service';
 import { Post, Post2 } from '@seed/models';
+import { HeaderService } from '../../../../../services/header.service';
 
 @Component({
   selector: 'app-blog-post-edit.page',
@@ -14,10 +15,26 @@ export class BlogPostEditPage implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
   blogService = inject(BlogService);
+  headerService = inject(HeaderService);
 
   post = signal<Post2 | undefined>(undefined);
 
   constructor() {
+    this.headerService.setBreadcrumbs(
+      [
+        {
+          label: 'Admin',
+          url: '/admin',
+        },
+        {
+          label: 'Blog',
+          url: '/admin/blog',
+        },
+      ],
+      {
+        withDefaults: true,
+      }
+    );
     effect(() => {
       const postId = this.activatedRoute.snapshot.paramMap.get('postId');
       if (!postId) {
@@ -32,6 +49,10 @@ export class BlogPostEditPage implements OnInit {
     ) as string;
     this.blogService.getPostById(postId).subscribe((post) => {
       this.post.set(post);
+      this.headerService.addBreadcrumb({
+        label: `Edit post`,
+        url: `/admin/blog/edit/${post.id}`,
+      });
     });
   }
 
