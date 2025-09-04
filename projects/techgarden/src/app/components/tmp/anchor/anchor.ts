@@ -2,7 +2,12 @@ import { Component, computed, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Post } from '@seed/models';
 
-export type AnchorSection = { fragment: string; title: string, tag: string, children?: AnchorSection[] };
+export interface AnchorSection {
+  fragment: string;
+  title: string;
+  tag: string;
+  children?: AnchorSection[];
+}
 
 @Component({
   selector: 'app-anchor',
@@ -24,7 +29,7 @@ export class Anchor {
     const parsedSections: AnchorSection[] = [];
     for (let i = 0; i < sections.length; i++) {
       if (sections[i].tag === 'h3') {
-        const parentIndex = i-1;
+        const parentIndex = i - 1;
         const children: AnchorSection[] = [];
         while (sections[i] && sections[i].tag === 'h3') {
           children.push(sections[i]);

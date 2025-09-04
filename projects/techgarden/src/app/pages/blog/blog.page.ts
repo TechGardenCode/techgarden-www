@@ -1,6 +1,5 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
-import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Anchor } from '../../components/tmp/anchor/anchor';
 import { BlogService } from '../../services/api/blog.service';
@@ -8,22 +7,22 @@ import { DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { Pagination } from '../../components/shared/pagination/pagination';
-import { Page2 } from '@seed/models';
+import { Page } from '@seed/models';
+import { SeedH1, SeedH2 } from "@seed/typography";
 
 @Component({
   selector: 'app-blog.page',
-  imports: [RouterModule, Anchor, DatePipe, NgIcon, Pagination],
+  imports: [RouterModule, Anchor, DatePipe, NgIcon, Pagination, SeedH1, SeedH2],
   providers: [provideIcons({ lucideCalendar })],
   templateUrl: './blog.page.html',
   styleUrl: './blog.page.css',
 })
-export class BlogPage implements OnInit {
-  protected readonly postsService = inject(PostsService);
+export class BlogPage {
   protected readonly blogService = inject(BlogService);
   protected readonly router = inject(Router);
   protected readonly activatedRoute = inject(ActivatedRoute);
+  protected readonly headerService = inject(HeaderService);
 
-  posts = this.postsService.markdownPosts;
   postsApiState = computed(() => this.blogService.postMetadataApiState());
   breadcrumbItems = [{ url: '/', label: 'Home' }];
   page = computed(() => {
@@ -41,7 +40,7 @@ export class BlogPage implements OnInit {
     return number;
   });
 
-  constructor(private readonly headerService: HeaderService) {
+  constructor() {
     this.headerService.setBreadcrumbs(
       [
         {
@@ -61,12 +60,7 @@ export class BlogPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // let { page } = this.activatedRoute.snapshot.queryParams;
-    // this.blogService.getPostMetadata({ page: page - 1 });
-  }
-
-  onPageChange(event?: Page2<unknown>) {
+  onPageChange(event?: Page<unknown>) {
     if (!event) {
       return;
     }

@@ -1,22 +1,4 @@
-export type Page<T> = {
-  content: T[];
-  page: {
-    size: number;
-    number: number;
-    totalElements: number;
-    totalPages: number;
-  };
-  totalElements?: number;
-  totalPages?: number;
-  size?: number;
-  numberOfElements?: number;
-  first?: boolean;
-  last?: boolean;
-  empty?: boolean;
-  number?: number;
-};
-
-export type Page2<T> = {
+export interface Page<T> {
   content: T[];
   pageable: {
     pageNumber: number;
@@ -35,10 +17,10 @@ export type Page2<T> = {
   sort: Sort;
   numberOfElements: number;
   empty: boolean;
-};
+}
 
-export type Sort = {
+export interface Sort {
   empty: boolean;
   unsorted: boolean;
   sorted: boolean;
-};
+}

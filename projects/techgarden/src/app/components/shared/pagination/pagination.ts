@@ -1,11 +1,4 @@
-import {
-  Component,
-  inject,
-  input,
-  model,
-  output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, model, ViewEncapsulation } from '@angular/core';
 
 import {
   SeedPagination,
@@ -16,7 +9,7 @@ import {
   SeedPaginationLink,
   SeedPaginationEllipsis,
 } from '@seed/pagination';
-import { Page2 } from '@seed/models';
+import { Page } from '@seed/models';
 
 @Component({
   selector: 'app-pagination',
@@ -34,7 +27,7 @@ import { Page2 } from '@seed/models';
   encapsulation: ViewEncapsulation.None,
 })
 export class Pagination {
-  page = model<Page2<unknown> | undefined>({
+  page = model<Page<unknown> | undefined>({
     content: [],
     pageable: {
       pageNumber: 0,

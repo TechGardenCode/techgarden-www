@@ -16,6 +16,8 @@
 </div>
 <div
   class="h-dvh w-dvw fixed inset-0 z-10 hidden data-[mobile-open=true]:block"
+  tabindex="-1"
+  (keydown.enter)="mobileService.closeNav()"
   (click)="mobileService.closeNav()"
   [attr.data-mobile-open]="mobileService.isNavOpen()"
 ></div>

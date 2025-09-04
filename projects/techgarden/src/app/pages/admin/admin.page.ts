@@ -1,22 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
 import { SeedButton } from '@seed/button';
-import { TestService } from '../../services/test/test.service';
 import { Anchor } from '../../components/tmp/anchor/anchor';
 import { SeedH2 } from '@seed/typography';
-import { SeedInput } from '@seed/input';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin.page',
-  imports: [SeedButton, Anchor, SeedH2, SeedInput, ReactiveFormsModule],
+  imports: [SeedButton, Anchor, SeedH2, ReactiveFormsModule, RouterModule],
   templateUrl: './admin.page.html',
   styleUrl: './admin.page.css',
 })
 export class AdminPage {
   protected readonly headerService = inject(HeaderService);
-  protected readonly testService = inject(TestService);
   protected readonly router = inject(Router);
 
   blogForm = new FormGroup({
@@ -53,21 +50,13 @@ Nam varius fermentum lorem a pulvinar. Donec ut massa facilisis, suscipit arcu a
     this.headerService.setBreadcrumbs(
       [
         {
-          label: 'Test',
-          url: '/test',
+          label: 'Admin',
+          url: '/admin',
         },
       ],
       {
         withDefaults: true,
       }
     );
-  }
-
-  createPost() {
-    this.testService.createPost(this.blogForm.value).subscribe({
-      next: (post: any) => {
-        this.router.navigate(['/blog', post.id]);
-      },
-    });
   }
 }

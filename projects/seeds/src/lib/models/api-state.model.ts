@@ -1,7 +1,7 @@
-export type ApiState<T> = {
+export interface ApiState<T> {
   data?: T;
   loading: boolean;
   error?: unknown;
   firstLoad: boolean;
   updatedAt?: Date;
-};
+}

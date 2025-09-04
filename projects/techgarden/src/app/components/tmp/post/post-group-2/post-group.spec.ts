@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Seeds } from './seeds';
+import { PostGroup } from './post-group';
 
-describe('Seeds', () => {
-  let component: Seeds;
-  let fixture: ComponentFixture<Seeds>;
+describe('PostGroup', () => {
+  let component: PostGroup;
+  let fixture: ComponentFixture<PostGroup>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Seeds]
+      imports: [PostGroup]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Seeds);
+    fixture = TestBed.createComponent(PostGroup);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

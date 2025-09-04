@@ -1,27 +1,28 @@
 <header
-  class="h-16 flex items-center gap-4 justify-between overflow-hidden max-w-6xl mx-auto bg-background"
+  class="flex items-center gap-4 justify-between overflow-hidden max-w-6xl mx-auto bg-background"
 >
-  <app-breadcrumb
-    class="hidden md:block overflow-hidden"
-    [breadcrumbItems]="breadcrumbItems()"
-  />
-  <button
-    seedButton
-    size="icon"
-    variant="ghost"
-    class="md:hidden"
-    (click)="mobileService.toggleNav()"
-  >
-    <ng-icon seedIcon name="lucideMenu" />
-  </button>
-  <!-- <search
-    class="border border-border rounded-md flex item-center transition-[width] w-48 lg:w-64 focus-within:w-64 focus-within:ring-[3px] focus-within:ring-ring/50 focus-within:border-ring shadow-xs bg-input/30"
-  >
-    <input class="outline-none py-1 px-2" placeholder="Search" />
-  </search> -->
-  <input
-    seedInput
-    placeholder="Search"
-    class="w-48 lg:w-64 focus-within:w-64 transition-[width]"
-  />
+  <div class="h-16 flex items-center gap-4">
+    <app-breadcrumb
+      class="hidden md:block overflow-hidden"
+      [breadcrumbItems]="breadcrumbItems()"
+    />
+    <button
+      seedButton
+      size="icon"
+      variant="ghost"
+      class="md:hidden"
+      (click)="mobileService.toggleNav()"
+    >
+      <ng-icon seedIcon name="lucideMenu" />
+    </button>
+  </div>
+  <div class="flex items-center gap-4 flex-row-reverse">
+    <div class="h-16 flex items-center">
+      <input
+        seedInput
+        placeholder="Search"
+        class="w-48 lg:w-64 focus-within:w-64 transition-[width]"
+      />
+    </div>
+  </div>
 </header>

@@ -2,15 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { PostMetadata } from '../../models/post-metadata.model';
 import { tap } from 'rxjs';
-import { ApiState, Page2 } from '@seed/models';
+import { ApiState, DeepPartial, Page, Post2 } from '@seed/models';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
   protected readonly http = inject(HttpClient);
+  protected readonly authService = inject(AuthService);
 
-  postMetadataApiState = signal<ApiState<Page2<PostMetadata>>>({
+  postMetadataApiState = signal<ApiState<Page<PostMetadata>>>({
     loading: false,
     error: null,
     firstLoad: true,
@@ -28,7 +30,7 @@ export class BlogService {
       loading: true,
     }));
     return this.http
-      .get<Page2<PostMetadata>>(`/api/blog/posts/metadata`, {
+      .get<Page<PostMetadata>>(`/api/blog/posts/metadata`, {
         params: { page, size },
       })
       .pipe(
@@ -63,6 +65,22 @@ export class BlogService {
   }
 
   getPostById(id: string) {
-    return this.http.get(`/api/blog/posts/${id}`);
+    return this.http.get<Post2>(`/api/blog/posts/${id}`);
+  }
+
+  createPost(post: DeepPartial<Post2>) {
+    post = {
+      ...post,
+      metadata: { ...post.metadata, author: this.authService.user()?.fullName },
+    };
+    return this.http.post<Post2>(`/api/blog/posts`, post);
+  }
+
+  savePost(post: DeepPartial<Post2>) {
+    post = {
+      ...post,
+      metadata: { ...post.metadata, author: this.authService.user()?.fullName },
+    };
+    return this.http.put<Post2>(`/api/blog/posts/${post.id}`, post);
   }
 }

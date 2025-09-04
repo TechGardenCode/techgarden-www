@@ -1,8 +1,10 @@
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { SeedButton } from '@seed/button';
+import { SeedButton, SeedButtonGroup } from '@seed/button';
 import { SeedIcon } from '@seed/icon';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
+  lucideChevronDown,
+  lucideChevronUp,
   lucideDot,
   lucideGithub,
   lucideHouse,
@@ -20,10 +22,33 @@ import { ThemeService } from '../../../services/theme.service';
 import { MobileService } from '../../../services/mobile.service';
 import { SeedH1 } from '@seed/typography';
 import { AuthService } from '../../../services/auth/auth.service';
+import {
+  SeedMenuTrigger,
+  SeedMenu,
+  SeedMenuLabel,
+  SeedMenuGroup,
+  SeedMenuSeparator,
+  SeedSubMenu,
+  SeedMenuItem,
+} from '@seed/menu';
 
 @Component({
   selector: 'app-nav',
-  imports: [RouterModule, SeedButton, SeedIcon, NgIcon, SeedH1],
+  imports: [
+    RouterModule,
+    SeedButton,
+    SeedIcon,
+    NgIcon,
+    SeedH1,
+    SeedMenuTrigger,
+    SeedMenuItem,
+    SeedMenu,
+    SeedMenuLabel,
+    SeedMenuGroup,
+    SeedMenuSeparator,
+    SeedSubMenu,
+    SeedButtonGroup
+  ],
   providers: [
     provideIcons({
       lucideMoon,
@@ -37,6 +62,8 @@ import { AuthService } from '../../../services/auth/auth.service';
       lucideLogIn,
       lucideLogOut,
       lucideShieldUser,
+      lucideChevronDown,
+      lucideChevronUp
     }),
   ],
   templateUrl: './nav.html',

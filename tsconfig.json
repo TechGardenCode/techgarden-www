@@ -28,9 +28,10 @@
       "@seed/pagination": [
         "./projects/seeds/src/lib/components/pagination/public-api.ts"
       ],
+      "@seed/menu": ["./projects/seeds/src/lib/components/menu/public-api.ts"],
       "@seed/typography": ["./projects/seeds/src/lib/typography/public-api.ts"],
       "@seed/utils": ["./projects/seeds/src/lib/utils/public-api.ts"],
-      "@seed/models": ["./projects/seeds/src/lib/models/public-api.ts"],
+      "@seed/models": ["./projects/seeds/src/lib/models/public-api.ts"]
     },
     "importHelpers": true,
     "target": "ES2022",

@@ -1,4 +1,4 @@
-export type PostMetadata = {
+export interface PostMetadata {
   id: string;
   title: string;
   description: string;
@@ -8,4 +8,4 @@ export type PostMetadata = {
   imageUrl: string;
   createdAt: Date;
   updatedAt: Date;
-};
+}

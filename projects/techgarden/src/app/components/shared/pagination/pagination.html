@@ -1,13 +1,23 @@
 <nav seedPagination>
   <ul seedPaginationContent>
-    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) - 1)">
+    <li
+      seedPaginationItem
+      tabindex="0"
+      (click)="setPageNumber((page()?.number || 0) - 1)"
+      (keydown.space)="setPageNumber((page()?.number || 0) - 1)"
+    >
       <seed-pagination-previous />
     </li>
 
     <!-- Show if Page >= 2 -->
     @if ((page()?.number || 0) >= 2) {
     <!-- First Page -->
-    <li seedPaginationItem (click)="setPageNumber(0)">
+    <li
+      seedPaginationItem
+      tabindex="0"
+      (click)="setPageNumber(0)"
+      (keydown.space)="setPageNumber(0)"
+    >
       <a seedPaginationLink>1</a>
     </li>
     <!-- Show if Page >= 3 -->
@@ -19,7 +29,12 @@
 
     <!-- Show if Page > 1 -->
     @if ((page()?.number || 0) > 0) {
-    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) - 1)">
+    <li
+      seedPaginationItem
+      tabindex="0"
+      (click)="setPageNumber((page()?.number || 0) - 1)"
+      (keydown.space)="setPageNumber((page()?.number || 0) - 1)"
+    >
       <a seedPaginationLink>{{ page()?.number || 0 }}</a>
     </li>
     }
@@ -31,7 +46,12 @@
 
     <!-- Show if Page < Total Pages - 1 -->
     @if((page()?.number || 0) < (page()?.totalPages || 0) - 1) {
-    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) + 1)">
+    <li
+      seedPaginationItem
+      tabindex="0"
+      (click)="setPageNumber((page()?.number || 0) + 1)"
+      (keydown.space)="setPageNumber((page()?.number || 0) + 1)"
+    >
       <a seedPaginationLink>{{ (page()?.number || 0) + 2 }}</a>
     </li>
     }
@@ -49,13 +69,20 @@
     <!-- Last Page -->
     <li
       seedPaginationItem
+      tabindex="0"
       (click)="setPageNumber((page()?.totalPages || 0) - 1)"
+      (keydown.space)="setPageNumber((page()?.totalPages || 0) - 1)"
     >
       <a seedPaginationLink>{{ page()?.totalPages }}</a>
     </li>
     }
 
-    <li seedPaginationItem (click)="setPageNumber((page()?.number || 0) + 1)">
+    <li
+      seedPaginationItem
+      tabindex="0"
+      (click)="setPageNumber((page()?.number || 0) + 1)"
+      (keydown.space)="setPageNumber((page()?.number || 0) + 1)"
+    >
       <seed-pagination-next />
     </li>
   </ul>

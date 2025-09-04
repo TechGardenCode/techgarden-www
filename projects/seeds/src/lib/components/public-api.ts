@@ -4,3 +4,4 @@ export * from './form-field/public-api';
 export * from './icon/public-api';
 export * from './input/public-api';
 export * from './pagination/public-api';
+export * from './menu/public-api';
