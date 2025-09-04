@@ -2,15 +2,15 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Anchor } from '../../../components/tmp/anchor/anchor';
 import { SeedH1 } from '@seed/typography';
-import { PostGroup } from '../../../components/tmp/post/post-group/post-group';
 import { HeaderService } from '../../../services/header.service';
 import { BlogService } from '../../../services/api/blog.service';
 import { DatePipe } from '@angular/common';
-import { ApiState, Post2 } from '@seed/models';
+import { ApiState, Post2, PostBodyJson } from '@seed/models';
+import { PostSection2 } from '../../../components/tmp/post/post-section-2/post-section';
 
 @Component({
   selector: 'app-posts.page',
-  imports: [RouterModule, Anchor, PostGroup, SeedH1, DatePipe],
+  imports: [RouterModule, Anchor, SeedH1, DatePipe, PostSection2],
   templateUrl: './posts.page.html',
   styleUrl: './posts.page.css',
 })
@@ -21,7 +21,6 @@ export class PostsPage implements OnInit {
 
   postContents = signal<{ fragment: string; title: string; tag: string }[]>([]);
   breadcrumbItems = [{ url: '/', label: 'Home' }];
-  mdPost = signal<string>('');
 
   post2 = signal<ApiState<Post2>>({
     loading: false,
@@ -61,11 +60,11 @@ export class PostsPage implements OnInit {
           firstLoad: false,
           data: post,
         });
-        this.mdPost.set(post.body.content || '');
         this.headerService.addBreadcrumb({
           label: post.metadata.title,
           url: `/${postId}`,
         });
+        this.parsePostBodyJsonToAnchor(post.postBodyJson || []);
       },
       error: (error) => {
         this.post2.set({
@@ -77,7 +76,22 @@ export class PostsPage implements OnInit {
     });
   }
 
+  parsePostBodyJsonToAnchor(postBodyJson: PostBodyJson[]) {
+    this.postContents.set(
+      postBodyJson
+        .filter(
+          (section) =>
+            section.type === 'HEADING' && ['h2', 'h3'].includes(section.subtype)
+        )
+        .map((section) => ({
+          fragment: this.parseFragment(section.text),
+          title: section.text,
+          tag: section.subtype,
+        }))
+    );
+  }
+
   parseFragment(fragment: string) {
-    return fragment.trim().toLowerCase().split(' ').join('-');
+    return `section-${fragment.replace(/\s+/g, '-').toLowerCase()}`;
   }
 }

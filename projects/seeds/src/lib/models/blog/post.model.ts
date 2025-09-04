@@ -22,6 +22,7 @@ export interface Post2 {
   id: string;
   metadata: PostMetadata;
   body: PostBody;
+  postBodyJson: PostBodyJson[];
   createdAt: string;
   updatedAt: string;
 }
@@ -41,4 +42,19 @@ export interface PostBody {
   content: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface PostBodyJson {
+  id: string;
+  type:
+    | 'HEADING'
+    | 'PARAGRAPH'
+    | 'QUOTE'
+    | 'CODE_BLOCK'
+    | 'DIVIDER'
+    | 'ORDERED_LIST'
+    | 'UNORDERED_LIST';
+  subtype: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  text: string;
+  lineNumber: number;
 }

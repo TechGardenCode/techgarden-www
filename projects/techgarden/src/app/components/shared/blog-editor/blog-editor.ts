@@ -11,7 +11,7 @@ import {
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SeedButton } from '@seed/button';
 import { SeedInput } from '@seed/input';
-import { Post2 } from '@seed/models';
+import { DeepPartial, Post2 } from '@seed/models';
 
 @Component({
   selector: 'app-blog-editor',
@@ -22,7 +22,7 @@ import { Post2 } from '@seed/models';
 })
 export class BlogEditor {
   fb = inject(FormBuilder);
-  post = input<Post2>();
+  post = input<DeepPartial<Post2>>();
   blogPostFormGroup = this.fb.group({
     title: this.fb.control('', { nonNullable: true }),
     description: this.fb.control('', { nonNullable: true }),
@@ -48,10 +48,10 @@ export class BlogEditor {
       }
 
       this.blogPostFormGroup.patchValue({
-        title: post.metadata.title,
-        description: post.metadata.description,
-        imageUrl: post.metadata.imageUrl,
-        content: post.body.content,
+        title: post.metadata?.title,
+        description: post.metadata?.description,
+        imageUrl: post.metadata?.imageUrl,
+        content: post.body?.content,
       });
     });
   }

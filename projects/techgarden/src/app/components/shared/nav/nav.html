@@ -9,7 +9,7 @@
   <h1 seedH1>Tech Garden</h1>
 </a>
 <p>Principal Architect<br />Bring back on-prem!</p>
-<div class="w-full mt-12">
+<div class="w-full mt-12 relative">
   <ul class="flex flex-col gap-2 -mx-4">
     <li>
       <a
@@ -49,16 +49,26 @@
     </li>
     @if(authService.authenticated()) {
     <li>
-      <a
-        seedButton
-        variant="ghost"
-        routerLink="/admin"
-        class="w-full gap-3 justify-start"
-        (click)="mobileService.closeNav()"
-      >
-        <ng-icon seedIcon name="lucideShieldUser" />
-        <span>Admin</span>
-      </a>
+      <seed-button-group>
+        <button
+          seedButton
+          variant="ghost"
+          class="grow gap-3 justify-start cursor-pointer"
+          routerLink="/admin"
+        >
+          <ng-icon seedIcon name="lucideShieldUser" />
+          <span>Admin</span>
+        </button>
+        <button
+          seedButton
+          variant="ghost"
+          size="icon"
+          class="absolute right-0 cursor-pointer"
+          [seedMenuTriggerFor]="menu"
+        >
+          <ng-icon seedIcon name="lucideChevronDown" />
+        </button>
+      </seed-button-group>
     </li>
     }
   </ul>
@@ -139,3 +149,31 @@
     <ng-icon seedIcon name="lucideGithub"></ng-icon>
   </a>
 </div>
+
+<ng-template #menu>
+  <seed-menu class="w-56">
+    <seed-menu-label>Blog</seed-menu-label>
+
+    <seed-menu-group>
+      <button seedMenuItem routerLink="/admin/blog">
+        <span>View posts</span>
+        <!-- <seed-menu-shortcut>⇧⌘P</seed-menu-shortcut> -->
+      </button>
+
+      <button seedMenuItem routerLink="/admin/blog/create">
+        <span>Create post</span>
+        <!-- <seed-menu-shortcut>⌘B</seed-menu-shortcut> -->
+      </button>
+    </seed-menu-group>
+  </seed-menu>
+</ng-template>
+
+<ng-template #invite>
+  <seed-sub-menu>
+    <button seedMenuItem>Email</button>
+
+    <button seedMenuItem>Message</button>
+    <seed-menu-separator />
+    <button seedMenuItem>More...</button>
+  </seed-sub-menu>
+</ng-template>

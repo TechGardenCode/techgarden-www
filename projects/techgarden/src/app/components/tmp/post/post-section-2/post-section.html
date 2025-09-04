@@ -1,0 +1,83 @@
+@if (section()) { @switch (section()?.type) { @case ('HEADING') { @switch
+(section()?.subtype) { @case ('h1') {
+<h1
+  seedH1
+  class="mt-10 mb-8"
+  [id]="sectionId()"
+  [innerHTML]="sectionHtml()"
+></h1>
+} @case ('h2') {
+<h2
+  seedH2
+  class="mt-8 mb-6"
+  [id]="sectionId()"
+  [innerHTML]="sectionHtml()"
+></h2>
+} @case ('h3') {
+<h3
+  seedH3
+  class="mt-6 mb-4"
+  [id]="sectionId()"
+  [innerHTML]="sectionHtml()"
+></h3>
+} @case ('h4') {
+<h4
+  [id]="sectionId()"
+  [innerHTML]="sectionHtml()"
+></h4>
+} @case ('h5') {
+<h5
+  [id]="sectionId()"
+  [innerHTML]="sectionHtml()"
+></h5>
+} @case ('h6') {
+<h6
+  [id]="sectionId()"
+  [innerHTML]="sectionHtml()"
+></h6>
+} } } @case ('CODE_BLOCK') {
+<div
+  class="overflow-auto border border-border bg-card text-card-foreground rounded-lg"
+>
+  <div class="flex px-4 pt-2 justify-between items-center">
+    <div
+      class="before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full before:bg-red-500 before:shadow-[1.25rem_0_0_var(--color-yellow-500),2.5rem_0_0_var(--color-green-500)] opacity-25"
+    ></div>
+    <span
+      class="flex items-center gap-1 font-mono text-sm text-muted-foreground"
+    >
+      <ng-icon seedIcon name="lucideCodeXml" size="sm"></ng-icon>
+      <span>{{ section()?.subtype || "code" }}</span>
+    </span>
+    <button
+      class="cursor-pointer"
+      seedButton
+      variant="ghost"
+      (click)="copyContent()"
+      size="sm"
+    >
+      copy
+    </button>
+  </div>
+  <div class="overflow-auto px-4 pb-2">
+    <table>
+      <tbody>
+        <tr>
+          <td class="select-none pr-4 text-right text-muted-foreground">
+            <pre>{{ calcLineNos(section()?.text) }}</pre>
+          </td>
+          <td>
+            <pre><code>{{ section()?.text }}</code></pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+} @case ('DIVIDER') {
+<hr class="border-border" />
+} @case ('QUOTE') {
+  <div [innerHTML]="sectionHtml()"></div>
+} @default {
+<p [innerHTML]="sectionHtml()"></p>
+} } }

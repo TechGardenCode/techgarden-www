@@ -38,17 +38,22 @@
         <div
           class="grow bg-card rounded-b-lg md:rounded-r-none md:rounded-l-lg border border-s border-border"
         >
-          <div class="flex flex-col p-6">
+          <div class="flex flex-col p-6 h-full">
+            @if (post.description) {
             <h2
-              class="text-xl font-bold line-clamp-2 mb-2 truncate whitespace-normal"
+              seedH2
+              class="line-clamp-2 mb-2 truncate whitespace-normal"
             >
               {{ post.title }}
             </h2>
-            <p class="text-secondary-foreground line-clamp-2 mb-4">
+            <p class="text-secondary-foreground line-clamp-2">
               {{ post.description }}
             </p>
+            } @else {
+            <h1 seedH1 class="line-clamp-2 truncate whitespace-normal">{{ post.title }}</h1>
+            }
             <div
-              class="text-secondary-foreground text-sm flex gap-2 items-center"
+              class="text-secondary-foreground text-sm flex gap-2 items-center mt-auto"
             >
               <ng-icon name="lucideCalendar"></ng-icon>
               <span>{{ post.createdAt | date : "mediumDate" }}</span>

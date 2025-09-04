@@ -8,10 +8,11 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { Pagination } from '../../components/shared/pagination/pagination';
 import { Page } from '@seed/models';
+import { SeedH1, SeedH2 } from "@seed/typography";
 
 @Component({
   selector: 'app-blog.page',
-  imports: [RouterModule, Anchor, DatePipe, NgIcon, Pagination],
+  imports: [RouterModule, Anchor, DatePipe, NgIcon, Pagination, SeedH1, SeedH2],
   providers: [provideIcons({ lucideCalendar })],
   templateUrl: './blog.page.html',
   styleUrl: './blog.page.css',
