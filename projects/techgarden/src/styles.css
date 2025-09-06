@@ -47,3 +47,9 @@
   --input: 0deg 0% 18.43%;
   --ring: 0deg 0.01% 45.16%;
 }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}

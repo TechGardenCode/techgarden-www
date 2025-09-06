@@ -31,7 +31,134 @@
       "@seed/menu": ["./projects/seeds/src/lib/components/menu/public-api.ts"],
       "@seed/typography": ["./projects/seeds/src/lib/typography/public-api.ts"],
       "@seed/utils": ["./projects/seeds/src/lib/utils/public-api.ts"],
-      "@seed/models": ["./projects/seeds/src/lib/models/public-api.ts"]
+      "@seed/models": ["./projects/seeds/src/lib/models/public-api.ts"],
+
+      "@spartan-ng/helm/accordion": [
+        "./projects/spartan-ng/ui-accordion-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/alert": [
+        "./projects/spartan-ng/ui-alert-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/alert-dialog": [
+        "./projects/spartan-ng/ui-alert-dialog-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/aspect-ratio": [
+        "./projects/spartan-ng/ui-aspect-ratio-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/avatar": [
+        "./projects/spartan-ng/ui-avatar-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/badge": [
+        "./projects/spartan-ng/ui-badge-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/breadcrumb": [
+        "./projects/spartan-ng/ui-breadcrumb-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/button": [
+        "./projects/spartan-ng/ui-button-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/calendar": [
+        "./projects/spartan-ng/ui-calendar-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/card": [
+        "./projects/spartan-ng/ui-card-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/carousel": [
+        "./projects/spartan-ng/ui-carousel-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/checkbox": [
+        "./projects/spartan-ng/ui-checkbox-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/command": [
+        "./projects/spartan-ng/ui-command-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/date-picker": [
+        "./projects/spartan-ng/ui-date-picker-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/dialog": [
+        "./projects/spartan-ng/ui-dialog-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/form-field": [
+        "./projects/spartan-ng/ui-form-field-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/hover-card": [
+        "./projects/spartan-ng/ui-hover-card-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/icon": [
+        "./projects/spartan-ng/ui-icon-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/input": [
+        "./projects/spartan-ng/ui-input-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/input-otp": [
+        "./projects/spartan-ng/ui-input-otp-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/label": [
+        "./projects/spartan-ng/ui-label-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/menu": [
+        "./projects/spartan-ng/ui-menu-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/pagination": [
+        "./projects/spartan-ng/ui-pagination-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/popover": [
+        "./projects/spartan-ng/ui-popover-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/progress": [
+        "./projects/spartan-ng/ui-progress-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/radio-group": [
+        "./projects/spartan-ng/ui-radio-group-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/scroll-area": [
+        "./projects/spartan-ng/ui-scroll-area-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/select": [
+        "./projects/spartan-ng/ui-select-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/separator": [
+        "./projects/spartan-ng/ui-separator-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/sheet": [
+        "./projects/spartan-ng/ui-sheet-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/skeleton": [
+        "./projects/spartan-ng/ui-skeleton-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/slider": [
+        "./projects/spartan-ng/ui-slider-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/sonner": [
+        "./projects/spartan-ng/ui-sonner-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/spinner": [
+        "./projects/spartan-ng/ui-spinner-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/switch": [
+        "./projects/spartan-ng/ui-switch-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/table": [
+        "./projects/spartan-ng/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/tabs": [
+        "./projects/spartan-ng/ui-tabs-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/toggle": [
+        "./projects/spartan-ng/ui-toggle-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/toggle-group": [
+        "./projects/spartan-ng/ui-toggle-group-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/tooltip": [
+        "./projects/spartan-ng/ui-tooltip-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/typography": [
+        "./projects/spartan-ng/ui-typography-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/utils": [
+        "./projects/spartan-ng/ui-utils-helm/src/index.ts"
+      ]
     },
     "importHelpers": true,
     "target": "ES2022",
