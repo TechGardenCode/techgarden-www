@@ -61,11 +61,13 @@ export class BlogPostEditPage implements OnInit {
     description,
     imageUrl,
     content,
+    publicPost,
   }: {
     title: string;
     description: string;
     imageUrl: string;
     content: string;
+    publicPost: boolean;
   }) {
     if (!this.post()) {
       return;
@@ -79,6 +81,7 @@ export class BlogPostEditPage implements OnInit {
           title,
           description,
           imageUrl,
+          publicPost,
         },
         body: {
           ...post.body,

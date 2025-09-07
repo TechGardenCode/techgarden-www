@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { PostMetadata } from '../../models/post-metadata.model';
 import { tap } from 'rxjs';
-import { ApiState, DeepPartial, Page, Post2 } from '@seed/models';
+import { ApiState, DeepPartial, Page, Post2, PostMetadata } from '@seed/models';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -21,9 +20,11 @@ export class BlogService {
   getPostMetadata({
     page = 0,
     size = 10,
+    includePrivate = false,
   }: {
     page?: number;
     size?: number;
+    includePrivate?: boolean;
   } = {}) {
     this.postMetadataApiState.update((state) => ({
       ...state,
@@ -31,7 +32,7 @@ export class BlogService {
     }));
     return this.http
       .get<Page<PostMetadata>>(`/api/blog/posts/metadata`, {
-        params: { page, size },
+        params: { page, size, includePrivate },
       })
       .pipe(
         tap({
@@ -55,6 +56,7 @@ export class BlogService {
             this.postMetadataApiState.update((state) => ({
               ...state,
               loading: false,
+              data: undefined,
               error: error,
               firstLoad: false,
             }));
@@ -71,7 +73,6 @@ export class BlogService {
   createPost(post: DeepPartial<Post2>) {
     post = {
       ...post,
-      metadata: { ...post.metadata, author: this.authService.user()?.fullName },
     };
     return this.http.post<Post2>(`/api/blog/posts`, post);
   }
@@ -79,7 +80,6 @@ export class BlogService {
   savePost(post: DeepPartial<Post2>) {
     post = {
       ...post,
-      metadata: { ...post.metadata, author: this.authService.user()?.fullName },
     };
     return this.http.put<Post2>(`/api/blog/posts/${post.id}`, post);
   }

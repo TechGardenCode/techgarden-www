@@ -58,7 +58,7 @@ export class AdminBlogPage {
       if (!page) {
         page = 1;
       }
-      this.blogService.getPostMetadata({ page: page - 1 });
+      this.blogService.getPostMetadata({ page: page - 1, includePrivate: true });
     });
   }
 

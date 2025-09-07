@@ -1,3 +1,5 @@
+import { Profile } from "../profile.model";
+
 export interface Post {
   id: string;
   title: string;
@@ -26,11 +28,13 @@ export interface Post2 {
   createdAt: string;
   updatedAt: string;
 }
+
 export interface PostMetadata {
   id: string;
   title: string;
   description: string;
-  author: string;
+  author: Profile;
+  publicPost: boolean;
   tags?: null;
   categories?: null;
   imageUrl: string;

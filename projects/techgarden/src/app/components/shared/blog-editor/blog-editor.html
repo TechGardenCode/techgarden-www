@@ -3,8 +3,8 @@
   (ngSubmit)="submitForm()"
   [formGroup]="blogPostFormGroup"
 >
-  <div class="flex flex-col md:max-w-96">
-    <label for="postTitle">Title</label>
+  <div class="flex flex-col md:max-w-96 gap-1">
+    <label for="postTitle" hlmLabel>Title</label>
     <input
       formControlName="title"
       id="postTitle"
@@ -14,8 +14,8 @@
     />
   </div>
 
-  <div class="flex flex-col grow md:max-w-96">
-    <label for="description">Description</label>
+  <div class="flex flex-col grow md:max-w-96 gap-1">
+    <label for="description" hlmLabel>Description</label>
     <textarea
       class="h-auto"
       id="description"
@@ -27,8 +27,8 @@
     ></textarea>
   </div>
 
-  <div class="flex flex-col md:max-w-96">
-    <label for="postImageUrl">Image URL</label>
+  <div class="flex flex-col md:max-w-96 gap-1">
+    <label for="postImageUrl" hlmLabel>Image URL</label>
     <input
       id="postImageUrl"
       seedInput
@@ -38,8 +38,8 @@
     />
   </div>
 
-  <div class="flex flex-col grow">
-    <label for="postContent">Post Content</label>
+  <div class="flex flex-col grow gap-1">
+    <label for="postContent" hlmLabel>Post Content</label>
     <textarea
       class="h-auto"
       id="postContent"
@@ -51,7 +51,19 @@
     ></textarea>
   </div>
 
-  <button class="md:self-start cursor-pointer" size="lg" seedButton type="submit">
+  <div class="flex flex-col gap-1">
+    <label hlmLabel for="postPublic">
+      Should post be public?
+    </label>
+    <hlm-switch id="postPublic" class="mr-2" formControlName="publicPost" />
+  </div>
+
+  <button
+    class="md:self-start cursor-pointer"
+    size="lg"
+    seedButton
+    type="submit"
+  >
     {{ update() ? "Update Post" : "Create Post" }}
   </button>
 </form>

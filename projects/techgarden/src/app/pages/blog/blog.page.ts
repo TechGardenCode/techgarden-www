@@ -5,7 +5,7 @@ import { Anchor } from '../../components/tmp/anchor/anchor';
 import { BlogService } from '../../services/api/blog.service';
 import { DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCalendar } from '@ng-icons/lucide';
+import { lucideCalendar, lucideUserPen } from '@ng-icons/lucide';
 import { Pagination } from '../../components/shared/pagination/pagination';
 import { Page } from '@seed/models';
 import { SeedH1, SeedH2 } from "@seed/typography";
@@ -13,7 +13,7 @@ import { SeedH1, SeedH2 } from "@seed/typography";
 @Component({
   selector: 'app-blog.page',
   imports: [RouterModule, Anchor, DatePipe, NgIcon, Pagination, SeedH1, SeedH2],
-  providers: [provideIcons({ lucideCalendar })],
+  providers: [provideIcons({ lucideCalendar, lucideUserPen })],
   templateUrl: './blog.page.html',
   styleUrl: './blog.page.css',
 })
@@ -23,10 +23,10 @@ export class BlogPage {
   protected readonly activatedRoute = inject(ActivatedRoute);
   protected readonly headerService = inject(HeaderService);
 
-  postsApiState = computed(() => this.blogService.postMetadataApiState());
+  postMetadataApiState = computed(() => this.blogService.postMetadataApiState());
   breadcrumbItems = [{ url: '/', label: 'Home' }];
   page = computed(() => {
-    let number = this.postsApiState().data?.number;
+    let number = this.postMetadataApiState().data?.number;
     if (number === undefined) {
       number = 0;
     }

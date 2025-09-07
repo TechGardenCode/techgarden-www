@@ -12,10 +12,12 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SeedButton } from '@seed/button';
 import { SeedInput } from '@seed/input';
 import { DeepPartial, Post2 } from '@seed/models';
+import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
   selector: 'app-blog-editor',
-  imports: [SeedInput, SeedButton, ReactiveFormsModule],
+  imports: [SeedInput, SeedButton, ReactiveFormsModule, HlmSwitch, HlmLabel],
   templateUrl: './blog-editor.html',
   styleUrl: './blog-editor.css',
   encapsulation: ViewEncapsulation.None,
@@ -28,6 +30,7 @@ export class BlogEditor {
     description: this.fb.control('', { nonNullable: true }),
     imageUrl: this.fb.control('', { nonNullable: true }),
     content: this.fb.control('', { nonNullable: true }),
+    publicPost: this.fb.control(true, { nonNullable: true }),
   });
   update = input<boolean, BooleanInput>(false, {
     transform: booleanAttribute,
@@ -38,6 +41,7 @@ export class BlogEditor {
     description: string;
     imageUrl: string;
     content: string;
+    publicPost: boolean;
   }>();
 
   constructor() {
@@ -50,6 +54,7 @@ export class BlogEditor {
       this.blogPostFormGroup.patchValue({
         title: post.metadata?.title,
         description: post.metadata?.description,
+        publicPost: post.metadata?.publicPost ?? true,
         imageUrl: post.metadata?.imageUrl,
         content: post.body?.content,
       });

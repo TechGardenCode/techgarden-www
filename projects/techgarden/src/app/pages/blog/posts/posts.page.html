@@ -33,7 +33,9 @@
     <div class="flex items-center justify-between mb-6 max-w-[800px]">
       <p class="text-xs">
         By
-        <span class="font-semibold">{{ post2().data?.metadata?.author }}</span>
+        <span class="font-semibold">{{
+          post2().data?.metadata?.author?.displayName
+        }}</span>
       </p>
       <div class="flex gap-2 text-xs">
         <p>

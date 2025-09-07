@@ -1,8 +1,8 @@
 <div class="flex gap-4">
   <main class="grow">
     <div class="flex flex-col gap-4">
-      @if(postsApiState().loading) { @for(i of [].constructor(3); track $index)
-      {
+      @if(postMetadataApiState().loading) { @for(i of [].constructor(3); track
+      $index) {
       <div
         class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"
       >
@@ -21,16 +21,17 @@
           </div>
         </div>
       </div>
-      } } @else { @if (postsApiState().data?.content?.length === 0) {
+      } } @else { @if (postMetadataApiState().data?.content?.length === 0) {
       <p class="text-center">No content available!</p>
-      } @for(post of postsApiState().data?.content; track $index) {
+      } @for(postMetadata of postMetadataApiState().data?.content; track $index)
+      {
       <a
-        routerLink="/blog/{{ post.id }}"
+        routerLink="/blog/{{ postMetadata.id }}"
         class="flex flex-col md:flex-row-reverse rounded-lg shadow shadow-border relative before:content-[''] before:w-full before:h-full before:absolute before:transition-opacity before:bg-secondary before:opacity-0 hover:before:opacity-30"
       >
         <div class="shrink-0 md:w-1/2 md:max-w-80">
           <img
-            [src]="post.imageUrl"
+            [src]="postMetadata.imageUrl"
             alt="Post Image"
             class="w-full h-full rounded-t-lg md:rounded-l-none md:rounded-r-lg aspect-video object-cover bg-border"
           />
@@ -39,31 +40,34 @@
           class="grow bg-card rounded-b-lg md:rounded-r-none md:rounded-l-lg border border-s border-border"
         >
           <div class="flex flex-col p-6 h-full">
-            @if (post.description) {
-            <h2
-              seedH2
-              class="line-clamp-2 mb-2 truncate whitespace-normal"
-            >
-              {{ post.title }}
+            @if (postMetadata.description) {
+            <h2 seedH2 class="line-clamp-2 mb-2 truncate whitespace-normal">
+              {{ postMetadata.title }}
             </h2>
             <p class="text-secondary-foreground line-clamp-2">
-              {{ post.description }}
+              {{ postMetadata.description }}
             </p>
             } @else {
-            <h1 seedH1 class="line-clamp-2 truncate whitespace-normal">{{ post.title }}</h1>
+            <h1 seedH1 class="line-clamp-2 truncate whitespace-normal">
+              {{ postMetadata.title }}
+            </h1>
             }
-            <div
-              class="text-secondary-foreground text-sm flex gap-2 items-center mt-auto"
-            >
-              <ng-icon name="lucideCalendar"></ng-icon>
-              <span>{{ post.createdAt | date : "mediumDate" }}</span>
+            <div class="flex items-center gap-6 text-sm mt-auto">
+              <div class="text-secondary-foreground flex gap-2 items-center">
+                <ng-icon name="lucideUserPen"></ng-icon>
+                <span> {{ postMetadata.author.displayName }}</span>
+              </div>
+              <div class="text-secondary-foreground flex gap-2 items-center">
+                <ng-icon name="lucideCalendar"></ng-icon>
+                <span>{{ postMetadata.createdAt | date : "mediumDate" }}</span>
+              </div>
             </div>
           </div>
         </div>
       </a>
       }
       <app-pagination
-        [page]="postsApiState().data"
+        [page]="postMetadataApiState().data"
         (pageChange)="onPageChange($event)"
       />
       }

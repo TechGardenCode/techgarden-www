@@ -21,7 +21,8 @@ export class BlogPostCreatePage {
     metadata: {
       title: 'Sample Post',
       description: 'This is a sample post',
-      imageUrl: 'https://placehold.co/800x400',
+      imageUrl: 'https://fastly.picsum.photos/id/116/800/400.jpg?hmac=8IrBmf-iOc5kKyMRKWmGgkVG0ohEQafuFLWnorJ0WmU',
+      publicPost: true,
     },
     body: {
       content: `---
@@ -162,17 +163,20 @@ console.log(foo(5));
     description,
     imageUrl,
     content,
+    publicPost,
   }: {
     title: string;
     description: string;
     imageUrl: string;
     content: string;
+    publicPost: boolean;
   }) {
     const post: DeepPartial<Post2> = {
       metadata: {
         title,
         description,
         imageUrl,
+        publicPost,
       },
       body: {
         content,
