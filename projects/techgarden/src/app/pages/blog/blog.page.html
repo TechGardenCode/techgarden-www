@@ -52,12 +52,12 @@
               {{ postMetadata.title }}
             </h1>
             }
-            <div class="flex items-center gap-6 text-sm mt-auto">
-              <div class="text-secondary-foreground flex gap-2 items-center">
+            <div class="flex items-center text-sm mt-auto flex-wrap">
+              <div class="text-secondary-foreground flex gap-2 items-center mt-2 mr-6">
                 <ng-icon name="lucideUserPen"></ng-icon>
                 <span> {{ postMetadata.author.displayName }}</span>
               </div>
-              <div class="text-secondary-foreground flex gap-2 items-center">
+              <div class="text-secondary-foreground flex gap-2 items-center mt-2">
                 <ng-icon name="lucideCalendar"></ng-icon>
                 <span>{{ postMetadata.createdAt | date : "mediumDate" }}</span>
               </div>
