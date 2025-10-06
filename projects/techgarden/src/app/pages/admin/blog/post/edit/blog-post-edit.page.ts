@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../../../../../services/api/blog.service';
 import { Post2, PostForm, PostFormSubmit } from '@seed/models';
 import { HeaderService } from '../../../../../services/header.service';
+import { AuthService } from '../../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-blog-post-edit.page',
@@ -15,6 +16,7 @@ export class BlogPostEditPage implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
   blogService = inject(BlogService);
+  authService = inject(AuthService);
   headerService = inject(HeaderService);
 
   post = signal<Post2 | undefined>(undefined);
@@ -48,6 +50,14 @@ export class BlogPostEditPage implements OnInit {
       'postId'
     ) as string;
     this.blogService.getPostById(postId).subscribe((post) => {
+      const sub = this.authService.sub();
+      if (!sub) {
+        throw new Error('User not logged in');
+      }
+      if (post.metadata.author.sub !== sub) {
+        this.router.navigate(['/admin']);
+        return;
+      }
       this.post.set(post);
       this.headerService.addBreadcrumb({
         label: `Edit post`,
