@@ -26,23 +26,48 @@ export class Anchor {
   }
 
   parseSections(sections: AnchorSection[]) {
+    const stack: AnchorSection[] = [];
     const parsedSections: AnchorSection[] = [];
-    for (let i = 0; i < sections.length; i++) {
-      if (sections[i].tag === 'h3') {
-        const parentIndex = i - 1;
-        const children: AnchorSection[] = [];
-        while (sections[i] && sections[i].tag === 'h3') {
-          children.push(sections[i]);
-          i++;
-        }
-        if (sections[parentIndex]) {
-          sections[parentIndex].children = children;
-        }
-        i--;
-      } else {
-        parsedSections.push(sections[i]);
+
+    const tagLevel = (tag: string) => {
+      if (tag === 'h1') return 1;
+      if (tag === 'h2') return 2;
+      if (tag === 'h3') return 3;
+      return 99;
+    };
+
+    for (const section of sections) {
+      const level = tagLevel(section.tag);
+
+      console.log('Popping - START');
+      // Pop stack until we find a parent with lower level
+      while (stack.length && tagLevel(stack[stack.length - 1].tag) >= level) {
+        console.log(JSON.stringify(stack));
+        stack.pop();
       }
+      console.log('Popping - END');
+
+      if (stack.length) {
+        console.log('ADDING CHILD - START');
+        // Attach as child to the last item in stack
+        if (!stack[stack.length - 1].children) {
+          stack[stack.length - 1].children = [];
+        }
+        stack[stack.length - 1].children!.push(section);
+        console.log('ADDING CHILD - END');
+      } else {
+        console.log('ADDING TOP-LEVEL - START');
+        // Top-level section
+        parsedSections.push(section);
+        console.log('ADDING TOP-LEVEL - END');
+      }
+
+      // Push current section to stack
+      stack.push(section);
+      console.log(section);
+      console.log(JSON.stringify(stack));
     }
+
     return parsedSections;
   }
 }

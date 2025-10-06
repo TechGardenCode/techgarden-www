@@ -1,23 +1,31 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Anchor } from '../../../components/tmp/anchor/anchor';
-import { SeedH1 } from '@seed/typography';
 import { HeaderService } from '../../../services/header.service';
 import { BlogService } from '../../../services/api/blog.service';
-import { DatePipe } from '@angular/common';
-import { ApiState, Post2, PostBodyJson } from '@seed/models';
-import { PostSection2 } from '../../../components/tmp/post/post-section-2/post-section';
+import { ApiState, Post2 } from '@seed/models';
+import { micromark } from 'micromark';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { PostHeader } from "../../../components/posts/post-header/post-header";
 
 @Component({
   selector: 'app-posts.page',
-  imports: [RouterModule, Anchor, SeedH1, DatePipe, PostSection2],
+  imports: [RouterModule, Anchor, PostHeader],
   templateUrl: './posts.page.html',
   styleUrl: './posts.page.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class PostsPage implements OnInit {
   protected readonly headerService = inject(HeaderService);
   protected readonly blogService = inject(BlogService);
   protected readonly activatedRoute = inject(ActivatedRoute);
+  protected readonly sanitizer = inject(DomSanitizer);
 
   postContents = signal<{ fragment: string; title: string; tag: string }[]>([]);
   breadcrumbItems = [{ url: '/', label: 'Home' }];
@@ -26,6 +34,8 @@ export class PostsPage implements OnInit {
     loading: false,
     firstLoad: true,
   });
+
+  micromarkedContent = signal<SafeHtml>('');
 
   constructor() {
     this.headerService.setBreadcrumbs(
@@ -64,7 +74,7 @@ export class PostsPage implements OnInit {
           label: post.metadata.title,
           url: `/${postId}`,
         });
-        this.parsePostBodyJsonToAnchor(post.postBodyJson || []);
+        this.parseContentToMicromarked(post.body.content || '');
       },
       error: (error) => {
         this.post2.set({
@@ -76,19 +86,38 @@ export class PostsPage implements OnInit {
     });
   }
 
-  parsePostBodyJsonToAnchor(postBodyJson: PostBodyJson[]) {
+  parseContentToMicromarked(content: string) {
+    const micromarkHtml = micromark(content);
+    const withIds = this.addIdFragmentToHeadings(micromarkHtml);
+    const headingInfo = this.getHeadingInfoFromHtml(withIds);
     this.postContents.set(
-      postBodyJson
-        .filter(
-          (section) =>
-            section.type === 'HEADING' && ['h2', 'h3'].includes(section.subtype)
-        )
-        .map((section) => ({
-          fragment: this.parseFragment(section.text),
-          title: section.text,
-          tag: section.subtype,
-        }))
+      headingInfo.map((info) => ({
+        fragment: info.id,
+        title: info.innerHtml,
+        tag: info.tag,
+      }))
     );
+    const sanitizedHtml = this.sanitizer.bypassSecurityTrustHtml(withIds);
+    this.micromarkedContent.set(sanitizedHtml);
+  }
+
+  getHeadingInfoFromHtml(headingHtml: string) {
+    const matches = headingHtml.matchAll(/<(h[1-3]) id="(.*?)">(.*?)<\/\1>/g);
+    if (matches) {
+      return Array.from(matches).map((match) => ({
+        tag: match[1],
+        id: match[2],
+        innerHtml: match[3],
+      }));
+    }
+    return [];
+  }
+
+  addIdFragmentToHeadings(html: string) {
+    return html.replace(/<(h[1-3])>(.*?)<\/\1>/g, (match, p1, p2) => {
+      const id = this.parseFragment(p2);
+      return `<${p1} id="${id}">${p2}</${p1}>`;
+    });
   }
 
   parseFragment(fragment: string) {

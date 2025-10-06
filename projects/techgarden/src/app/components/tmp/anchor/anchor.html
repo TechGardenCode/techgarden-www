@@ -20,11 +20,26 @@
         </a>
         @if (content.children && content.children.length) {
         <ul class="pl-3">
-          @for (child of content.children; track $index) {
+          @for (child of content.children; track child.fragment) {
           <li>
             <a class="line-clamp-1" routerLink="." [fragment]="child.fragment">
               {{ child.title }}
             </a>
+            @if( child.children && child.children.length) {
+            <ul class="pl-3">
+              @for (grandChild of child.children; track grandChild.fragment) {
+              <li>
+                <a
+                  class="line-clamp-1"
+                  routerLink="."
+                  [fragment]="grandChild.fragment"
+                >
+                  {{ grandChild.title }}
+                </a>
+              </li>
+              }
+            </ul>
+            }
           </li>
           }
         </ul>

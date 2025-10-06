@@ -1,5 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
+import { OidcUserInfo } from '@seed/models';
 import { catchError, map, of, tap } from 'rxjs';
 
 @Injectable({
@@ -9,16 +10,18 @@ export class AuthService {
   http = inject(HttpClient);
 
   authenticated = signal(false);
-  user = signal<{ fullName: string } | undefined>(undefined);
+  user = signal<OidcUserInfo | undefined>(undefined);
 
   checkAuthentication() {
     return this.http
-      .get('/api/auth/me', {
+      .get<OidcUserInfo>('/api/auth/me', {
         observe: 'response',
         withCredentials: true,
       })
       .pipe(
-        tap(({ body }) => this.user.set(body as { fullName: string })),
+        tap((res) => {
+          this.user.set(res.body as OidcUserInfo)
+        }),
         map((res: HttpResponse<unknown>) => {
           this.authenticated.set(res.ok);
           return res.ok;

@@ -47,7 +47,7 @@ import {
     SeedMenuGroup,
     SeedMenuSeparator,
     SeedSubMenu,
-    SeedButtonGroup
+    SeedButtonGroup,
   ],
   providers: [
     provideIcons({
@@ -63,7 +63,7 @@ import {
       lucideLogOut,
       lucideShieldUser,
       lucideChevronDown,
-      lucideChevronUp
+      lucideChevronUp,
     }),
   ],
   templateUrl: './nav.html',
@@ -81,5 +81,11 @@ export class Nav implements OnInit {
 
   ngOnInit() {
     this.authService.checkAuthentication().subscribe();
+  }
+
+  login() {
+    window.location.assign(
+      `/api/auth/login?continue=${window.location.pathname}`
+    );
   }
 }

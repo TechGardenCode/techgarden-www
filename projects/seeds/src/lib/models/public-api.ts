@@ -3,3 +3,4 @@ export * from './api-state.model';
 export * from './page.model';
 export * from './blog/post.model';
 export * from './deep-partial.model';
+export * from './auth/user-info.model';

@@ -1,0 +1,44 @@
+@if(!postMetadata()) {
+<div class="animate-pulse mb-3">
+  <div
+    class="w-full h-full rounded-lg aspect-video object-cover bg-border"
+  ></div>
+</div>
+<div class="flex justify-between mb-6">
+  <div>
+    <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+  </div>
+  <div class="flex gap-2">
+    <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+    <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+  </div>
+</div>
+<div class="h-9 mb-8 w-64 bg-border animate-pulse rounded-lg"></div>
+} @else {
+<img
+  [src]="postMetadata()?.imageUrl"
+  alt="{{ postMetadata()?.title }}"
+  class="mb-3 aspect-video w-full max-w-[800px] object-cover rounded-lg"
+/>
+<div class="flex items-center justify-between mb-6 max-w-[800px]">
+  <p class="text-xs">
+    By
+    <span class="font-semibold">{{ postMetadata()?.author?.displayName }}</span>
+  </p>
+  <div class="flex gap-2 text-xs">
+    <p>
+      <span>Posted</span>
+      <span class="font-semibold">
+        {{ postMetadata()?.createdAt | date }}
+      </span>
+    </p>
+    <p>
+      <span>Updated</span>
+      <span class="font-semibold">
+        {{ postMetadata()?.updatedAt | date }}
+      </span>
+    </p>
+  </div>
+</div>
+<h1 seedH1 class="mb-8">{{ postMetadata()?.title }}</h1>
+}

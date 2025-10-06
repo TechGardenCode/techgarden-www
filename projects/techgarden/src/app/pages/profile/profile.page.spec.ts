@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostGroup } from './post-group';
+import { ProfilePage } from './profile.page';
 
-describe('PostGroup', () => {
-  let component: PostGroup;
-  let fixture: ComponentFixture<PostGroup>;
+describe('ProfilePage', () => {
+  let component: ProfilePage;
+  let fixture: ComponentFixture<ProfilePage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PostGroup]
+      imports: [ProfilePage]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostGroup);
+    fixture = TestBed.createComponent(ProfilePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

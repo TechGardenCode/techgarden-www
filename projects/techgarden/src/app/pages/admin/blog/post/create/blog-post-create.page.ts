@@ -43,7 +43,7 @@ You will like those projects!
 ###### h6 Heading
 
 
-## Horizontal Rules
+# Horizontal Rules
 
 ___
 
@@ -52,7 +52,7 @@ ___
 ***
 
 
-## Emphasis
+# Emphasis
 
 **This is bold text**
 
@@ -65,7 +65,7 @@ _This is italic text_
 ~~Strikethrough~~
 
 
-## Blockquotes
+# Blockquotes
 
 
 > Blockquotes can also be nested...
@@ -73,9 +73,9 @@ _This is italic text_
 > > > ...or with spaces between arrows.
 
 
-## Lists
+# Lists
 
-Unordered
+## Unordered
 
 + Create a list by starting a line with \`+\`, \`-\`, or \`*\`
 + Sub-lists are made by indenting 2 spaces:
@@ -85,33 +85,36 @@ Unordered
     - Nulla volutpat aliquam velit
 + Very easy!
 
-Ordered
+## Ordered ascending
 
 1. Lorem ipsum dolor sit amet
 2. Consectetur adipiscing elit
 3. Integer molestie lorem at massa
 
+## Ordered static
 
 1. You can use sequential numbers...
 1. ...or keep all the numbers as \`1.\`
 
-Start numbering with offset:
+## With offset
 
 57. foo
 1. bar
 
 
-## Code
+# Code
 
-Inline \`code\`
+## Inline
 
-Block code "fences"
+\`code\`
+
+## Block
 
 \`\`\`
 Sample text here...
 \`\`\`
 
-Syntax highlighting
+## Syntax highlighting
 
 \`\`\` js
 var foo = function (bar) {
@@ -121,14 +124,14 @@ var foo = function (bar) {
 console.log(foo(5));
 \`\`\`
 
-## Links
+# Links
 
 [link text](http://dev.nodeca.com)
 
 [link with title](http://nodeca.github.io/pica/demo/ "title text!")
 
 
-## Images
+# Images
 
 ![Minion](https://octodex.github.com/images/minion.png)
 ![Inflatocat](https://octodex.github.com/images/inflatocat.png "Inflatocat")

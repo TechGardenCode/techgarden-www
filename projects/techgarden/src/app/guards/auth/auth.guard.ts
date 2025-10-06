@@ -11,7 +11,6 @@ export const authGuard: CanActivateFn = () => {
       if (isAuthenticated) {
         return true;
       }
-      window.location.assign('/api/auth/login');
       return false;
     })
   );

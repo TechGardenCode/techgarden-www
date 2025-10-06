@@ -31,7 +31,7 @@ export class BlogService {
       loading: true,
     }));
     return this.http
-      .get<Page<PostMetadata>>(`/api/blog/posts/metadata`, {
+      .get<Page<PostMetadata>>(`/api/blog/feed/latest`, {
         params: { page, size, includePrivate },
       })
       .pipe(

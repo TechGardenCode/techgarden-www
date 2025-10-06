@@ -47,9 +47,47 @@
   --input: 0deg 0% 18.43%;
   --ring: 0deg 0.01% 45.16%;
 }
-
 @layer base {
   * {
     @apply border-border;
+  }
+}
+
+.micromark-content {
+  > * {
+    @apply mb-4;
+  }
+
+  a {
+    @apply underline;
+  }
+
+  blockquote {
+    @apply border-l-4 pl-4 py-2 mt-2 mb-4;
+  }
+
+  h1 {
+    @apply mt-10 mb-8 text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply mt-8 mb-6 text-2xl font-medium;
+  }
+
+  h3 {
+    @apply mt-6 mb-4 text-xl;
+  }
+
+
+  ul {
+    @apply list-disc list-inside [&_ul]:ml-4;
+  }
+
+  ol {
+    @apply list-decimal list-inside [&_ol]:ml-4;
+
+    p {
+      display: inline-block;
+    }
   }
 }
