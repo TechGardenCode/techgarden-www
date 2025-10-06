@@ -40,5 +40,12 @@
     </p>
   </div>
 </div>
-<h1 seedH1 class="mb-8">{{ postMetadata()?.title }}</h1>
+<div class="flex gap-4 justify-between">
+  <h1 seedH1 class="mb-8">{{ postMetadata()?.title }}</h1>
+  @if(canUserEdit()) {
+  <a hlmBtn [routerLink]="['/admin', 'blog', 'edit', postMetadata()?.id]">
+    Edit Post
+  </a>
+  }
+</div>
 }

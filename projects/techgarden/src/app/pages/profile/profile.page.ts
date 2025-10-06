@@ -41,13 +41,6 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profileService.getProfileByName(this.profileName).subscribe({
-      next: (profile) => {
-        console.log(profile);
-      },
-      error: () => {
-        console.error();
-      },
-    });
+    this.profileService.getProfileByName(this.profileName).subscribe();
   }
 }

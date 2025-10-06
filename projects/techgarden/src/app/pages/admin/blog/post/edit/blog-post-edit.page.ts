@@ -2,7 +2,7 @@ import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { BlogEditor } from '../../../../../components/shared/blog-editor/blog-editor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../../../../../services/api/blog.service';
-import { Post2 } from '@seed/models';
+import { Post2, PostForm, PostFormSubmit } from '@seed/models';
 import { HeaderService } from '../../../../../services/header.service';
 
 @Component({
@@ -56,22 +56,29 @@ export class BlogPostEditPage implements OnInit {
     });
   }
 
-  postSubmit({
+  postSubmit(postFormSubmit: PostFormSubmit) {
+    if (!this.post()) {
+      return;
+    }
+    const { action, postForm } = postFormSubmit;
+    if (action === 'delete') {
+      this.blogService.deletePost(this.post() as Post2).subscribe({
+        next: () => {
+          this.router.navigate(['/admin/blog']);
+        },
+      });
+    } else if (action === 'submit' && postForm) {
+      this.updateAndSavePost(postForm);
+    }
+  }
+
+  updateAndSavePost({
     title,
     description,
     imageUrl,
     content,
     publicPost,
-  }: {
-    title: string;
-    description: string;
-    imageUrl: string;
-    content: string;
-    publicPost: boolean;
-  }) {
-    if (!this.post()) {
-      return;
-    }
+  }: PostForm) {
     this.post.update((post) => {
       post = post as Post2;
       return {

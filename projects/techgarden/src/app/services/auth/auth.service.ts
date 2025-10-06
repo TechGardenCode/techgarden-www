@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { OidcUserInfo } from '@seed/models';
 import { catchError, map, of, tap } from 'rxjs';
 
@@ -11,6 +11,7 @@ export class AuthService {
 
   authenticated = signal(false);
   user = signal<OidcUserInfo | undefined>(undefined);
+  sub = computed(() => this.user()?.subject);
 
   checkAuthentication() {
     return this.http

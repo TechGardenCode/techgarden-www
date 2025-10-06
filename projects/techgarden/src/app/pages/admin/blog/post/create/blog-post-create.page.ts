@@ -1,6 +1,6 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { BlogEditor } from '../../../../../components/shared/blog-editor/blog-editor';
-import { DeepPartial, Post2 } from '@seed/models';
+import { DeepPartial, Post2, PostFormSubmit } from '@seed/models';
 import { Router } from '@angular/router';
 import { BlogService } from '../../../../../services/api/blog.service';
 import { HeaderService } from '../../../../../services/header.service';
@@ -21,7 +21,8 @@ export class BlogPostCreatePage {
     metadata: {
       title: 'Sample Post',
       description: 'This is a sample post',
-      imageUrl: 'https://fastly.picsum.photos/id/116/800/400.jpg?hmac=8IrBmf-iOc5kKyMRKWmGgkVG0ohEQafuFLWnorJ0WmU',
+      imageUrl:
+        'https://fastly.picsum.photos/id/116/800/400.jpg?hmac=8IrBmf-iOc5kKyMRKWmGgkVG0ohEQafuFLWnorJ0WmU',
       publicPost: true,
     },
     body: {
@@ -161,19 +162,12 @@ console.log(foo(5));
     );
   }
 
-  postSubmit({
-    title,
-    description,
-    imageUrl,
-    content,
-    publicPost,
-  }: {
-    title: string;
-    description: string;
-    imageUrl: string;
-    content: string;
-    publicPost: boolean;
-  }) {
+  postSubmit(postFormSubmit: PostFormSubmit) {
+    const { action, postForm } = postFormSubmit;
+    if (!postForm || action !== 'submit') {
+      return;
+    }
+    const { title, description, imageUrl, content, publicPost } = postForm;
     const post: DeepPartial<Post2> = {
       metadata: {
         title,

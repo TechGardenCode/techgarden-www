@@ -11,13 +11,21 @@ import {
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SeedButton } from '@seed/button';
 import { SeedInput } from '@seed/input';
-import { DeepPartial, Post2 } from '@seed/models';
+import { DeepPartial, Post2, PostForm, PostFormSubmit } from '@seed/models';
 import { HlmSwitch } from '@spartan-ng/helm/switch';
 import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'app-blog-editor',
-  imports: [SeedInput, SeedButton, ReactiveFormsModule, HlmSwitch, HlmLabel],
+  imports: [
+    SeedInput,
+    SeedButton,
+    ReactiveFormsModule,
+    HlmSwitch,
+    HlmLabel,
+    HlmButton,
+  ],
   templateUrl: './blog-editor.html',
   styleUrl: './blog-editor.css',
   encapsulation: ViewEncapsulation.None,
@@ -36,13 +44,7 @@ export class BlogEditor {
     transform: booleanAttribute,
   });
 
-  postSubmit = output<{
-    title: string;
-    description: string;
-    imageUrl: string;
-    content: string;
-    publicPost: boolean;
-  }>();
+  postSubmit = output<PostFormSubmit>();
 
   constructor() {
     effect(() => {
@@ -70,6 +72,14 @@ export class BlogEditor {
     ) {
       return;
     }
-    this.postSubmit.emit(this.blogPostFormGroup.getRawValue());
+    const formValue = this.blogPostFormGroup.value as PostForm;
+    this.postSubmit.emit({
+      action: 'submit',
+      postForm: formValue,
+    });
+  }
+
+  deletePost() {
+    this.postSubmit.emit({ action: 'delete' });
   }
 }

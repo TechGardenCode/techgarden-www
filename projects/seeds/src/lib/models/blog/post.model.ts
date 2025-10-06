@@ -1,4 +1,4 @@
-import { Profile } from "../profile.model";
+import { Profile } from '../profile.model';
 
 export interface Post {
   id: string;
@@ -45,4 +45,17 @@ export interface PostBody {
   content: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface PostFormSubmit {
+  action: 'submit' | 'delete';
+  postForm?: PostForm;
+}
+
+export interface PostForm {
+  title: string;
+  description: string;
+  imageUrl: string;
+  content: string;
+  publicPost: boolean;
 }

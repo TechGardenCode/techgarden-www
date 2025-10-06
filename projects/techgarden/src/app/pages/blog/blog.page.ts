@@ -56,7 +56,7 @@ export class BlogPage {
       if (!page) {
         page = 1;
       }
-      this.blogService.getPostMetadata({ page: page - 1 });
+      this.blogService.getLatestFeed({ page: page - 1 });
     });
   }
 
@@ -72,7 +72,7 @@ export class BlogPage {
         },
         queryParamsHandling: 'merge',
       });
-      this.blogService.getPostMetadata({
+      this.blogService.getLatestFeed({
         page: event.number,
       });
     }

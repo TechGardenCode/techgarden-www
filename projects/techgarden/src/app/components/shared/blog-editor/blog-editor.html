@@ -52,18 +52,27 @@
   </div>
 
   <div class="flex flex-col gap-1">
-    <label hlmLabel for="postPublic">
-      Should post be public?
-    </label>
+    <label hlmLabel for="postPublic"> Should post be public? </label>
     <hlm-switch id="postPublic" class="mr-2" formControlName="publicPost" />
   </div>
 
-  <button
-    class="md:self-start cursor-pointer"
-    size="lg"
-    seedButton
-    type="submit"
-  >
-    {{ update() ? "Update Post" : "Create Post" }}
-  </button>
+  <div class="flex gap-2">
+    @if (update()) {
+    <button
+      class="md:self-start cursor-pointer"
+      size="lg"
+      seedButton
+      type="submit"
+    >
+      Update post
+    </button>
+    <button class="md:self-start cursor-pointer" variant="destructive" size="lg" hlmBtn (click)="deletePost()">
+      Delete post
+    </button>
+    } @else {
+    <button class="md:self-start cursor-pointer" size="lg" hlmBtn type="submit">
+      Create post
+    </button>
+    }
+  </div>
 </form>
