@@ -13,10 +13,11 @@ import { ApiState, Post2 } from '@seed/models';
 import { micromark } from 'micromark';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PostHeader } from "../../../components/posts/post-header/post-header";
+import { PostComments } from "./components/post-comments/post-comments";
 
 @Component({
   selector: 'app-posts.page',
-  imports: [RouterModule, Anchor, PostHeader],
+  imports: [RouterModule, Anchor, PostHeader, PostComments],
   templateUrl: './posts.page.html',
   styleUrl: './posts.page.css',
   encapsulation: ViewEncapsulation.None,

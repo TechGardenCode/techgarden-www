@@ -59,3 +59,11 @@ export interface PostForm {
   content: string;
   publicPost: boolean;
 }
+
+export interface PostCommentModel {
+  id: string;
+  content: string;
+  author: Partial<Profile>;
+  createdAt: string;
+  updatedAt: string;
+}

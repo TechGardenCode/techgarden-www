@@ -1,7 +1,21 @@
 <div class="flex gap-4">
   <main class="w-full lg:w-[calc(100%-16rem-1rem)] mr-auto">
-    <app-post-header [postMetadata]="post2().data?.metadata"></app-post-header>
     @if (!post2().data) {
+    <div class="animate-pulse mb-3">
+      <div
+        class="w-full h-full rounded-lg aspect-video object-cover bg-border"
+      ></div>
+    </div>
+    <div class="flex justify-between mb-6">
+      <div>
+        <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+      </div>
+      <div class="flex gap-2">
+        <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+        <div class="h-4 w-32 bg-border animate-pulse rounded-lg"></div>
+      </div>
+    </div>
+    <div class="h-9 mb-8 w-64 bg-border animate-pulse rounded-lg"></div>
     <div class="mt-8 mb-6 h-8 bg-border animate-pulse rounded-lg w-64"></div>
     <div class="w-full py-1">
       <div class="w-11/12 h-4 mb-2 bg-border animate-pulse rounded-lg"></div>
@@ -11,11 +25,13 @@
       <div class="w-9/12 h-4 mb-2 bg-border animate-pulse rounded-lg"></div>
     </div>
     } @else {
+    <app-post-header [postMetadata]="post2().data?.metadata"></app-post-header>
     <div class="break-words">
       @if(micromarkedContent()) {
       <div class="micromark-content" [innerHTML]="micromarkedContent()"></div>
       }
     </div>
+    <app-post-comments [postId]="post2().data?.id"></app-post-comments>
     }
   </main>
   <aside class="hidden lg:block w-64 shrink-0 relative">

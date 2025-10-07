@@ -1,0 +1,84 @@
+<!-- <div class="flex gap-4">
+  <div class="flex flex-col gap-4 mt-4">
+    <hlm-avatar variant="large">
+      <img
+        src="https://placehold.co/64"
+        alt="spartan logo. Resembling a spartanic shield"
+        hlmAvatarImage
+      />
+      <span class="bg-[#FD005B] text-white" hlmAvatarFallback>RG</span>
+    </hlm-avatar>
+    <button
+      hlmBtn
+      size="icon"
+      variant="ghost"
+      class="size-8"
+      (click)="collapsed.set(!collapsed())"
+      [attr.aria-expanded]="!collapsed()"
+    >
+      <ng-icon
+        hlm
+        size="sm"
+        [name]="collapsed() ? 'lucideChevronsUpDown' : 'lucideChevronsDownUp'"
+      ></ng-icon>
+    </button>
+  </div>
+  <div class="flex flex-col gap-4 grow px-2">
+    @if(!collapsed()) {
+
+    <div class="border grow rounded-md -mt-px py-4">
+      <div class="flex gap-2 items-center">
+        <button hlmBtn variant="ghost" size="sm">
+          {{ comment()?.author?.displayName }}
+        </button>
+        <span class="text-sm">
+          {{ comment()?.createdAt | date : "MMM d" }}
+        </span>
+      </div>
+      <div class="pl-3">
+        {{ comment()?.content }}
+      </div>
+    </div>
+    <div class="flex gap-4 items-center pl-1">
+      <button hlmBtn variant="ghost" size="sm">
+        <ng-icon hlm size="sm" name="lucideThumbsUp"></ng-icon>
+        <span class="ml-1">Like</span>
+      </button>
+      <button hlmBtn variant="ghost" size="sm">
+        <ng-icon hlm size="sm" name="lucideMessageCircle"></ng-icon>
+        <span class="ml-1">Reply</span>
+      </button>
+      <button hlmBtn variant="ghost" size="sm">
+        <ng-icon hlm size="sm" name="lucideShare2"></ng-icon>
+        <span class="ml-1">Share</span>
+      </button>
+    </div>
+    } @else {
+    <div class="grow py-4 ml-px">
+      <div class="flex gap-2 items-center">
+        <button hlmBtn variant="ghost" size="sm">
+          {{ comment()?.author?.displayName }}
+        </button>
+        <span class="text-sm">
+          {{ comment()?.createdAt | date : "MMM d" }}
+        </span>
+      </div>
+      <div class="flex gap-4 items-center">
+        <button hlmBtn variant="ghost" size="sm">
+          <span>3</span>
+          <span class="ml-1">Likes</span>
+        </button>
+        <button hlmBtn variant="ghost" size="sm">
+          <span>2</span>
+          <span class="ml-1">Replies</span>
+        </button>
+      </div>
+    </div>
+
+    }
+  </div>
+</div> -->
+<div class="px-3 py-1 ml-12 border rounded-md">
+  <h2 seedH2>{{ comment()?.author?.displayName }}</h2>
+  <p>{{ comment()?.content }}</p>
+</div>

@@ -1,0 +1,43 @@
+<h1 seedH1>Comments</h1>
+<form class="flex items-start gap-4" [formGroup]="commentForm">
+  <hlm-avatar variant="large">
+    <img
+      src="https://placehold.co/64"
+      alt="spartan logo. Resembling a spartanic shield"
+      hlmAvatarImage
+    />
+    <span class="bg-[#FD005B] text-white" hlmAvatarFallback>RG</span>
+  </hlm-avatar>
+  <div class="flex flex-col gap-4 grow items-start">
+    <textarea
+      (focus)="showCommentFormSubmitButton.set(true)"
+      class="min-h-[90px]"
+      hlmInput
+      formControlName="comment"
+      placeholder="Add a comment..."
+    ></textarea>
+    @if (showCommentFormSubmitButton()) {
+    <div class="flex gap-4">
+      <button
+        hlmBtn
+        type="submit"
+        [disabled]="commentForm.invalid"
+        variant="default"
+      >
+        Submit
+      </button>
+      <button
+        hlmBtn
+        type="button"
+        variant="secondary"
+        (click)="showCommentFormSubmitButton.set(false); commentForm.reset()"
+      >
+        Cancel
+      </button>
+    </div>
+    }
+  </div>
+</form>
+@for (comment of comments() || []; track comment.id) {
+<app-post-comment [comment]="comment"></app-post-comment>
+}
