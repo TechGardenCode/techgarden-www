@@ -60,6 +60,17 @@ export interface PostForm {
   publicPost: boolean;
 }
 
+export interface Reaction {
+  id: string;
+  parentId: string;
+  parentType: 'post' | 'comment';
+  user: Profile;
+  content: string;
+  reactionType: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface PostCommentModel {
   id: string;
   content: string;
